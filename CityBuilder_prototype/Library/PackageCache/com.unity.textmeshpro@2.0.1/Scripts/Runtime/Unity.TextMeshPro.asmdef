@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.TextMeshPro",
     "references": [ "Unity.ugui" ],
@@ -10,4 +11,18 @@
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": []
+=======
+{
+    "name": "Unity.TextMeshPro",
+    "references": [ "Unity.ugui" ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+>>>>>>> 711d5e49af469ce061ba97343ef1560d9c22cb45
 }

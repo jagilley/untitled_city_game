@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "name": "Unity.TextMeshPro.Editor.Tests",
     "references": [
@@ -13,4 +14,21 @@
         "Editor"
     ],
     "excludePlatforms": []
+=======
+{
+    "name": "Unity.TextMeshPro.Editor.Tests",
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.TextMeshPro.Editor",
+		"Unity.ugui",
+        "Unity.ugui.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+>>>>>>> 711d5e49af469ce061ba97343ef1560d9c22cb45
 }
