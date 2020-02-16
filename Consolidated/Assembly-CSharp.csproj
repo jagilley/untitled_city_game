@@ -67,6 +67,7 @@
     <Compile Include="Assets\AurynSky\Forest Pack\Scripts\MaterialMover.cs" />
     <Compile Include="Assets\AurynSky\Forest Pack\Scripts\Rotator.cs" />
     <Compile Include="Assets\AurynSky\Forest Pack\Scripts\WheelController.cs" />
+    <Compile Include="Assets\Blocker.cs" />
     <Compile Include="Assets\Scripts\Building.cs" />
     <Compile Include="Assets\Scripts\Building_Holder.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
@@ -82,33 +83,34 @@
     <Compile Include="Assets\Scripts\Turret.cs" />
     <Compile Include="Assets\Scripts\Upgrade.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
+    <None Include="Assets\Shaders\CustomOutline.shader" />
     <None Include="Assets\AurynSky\Forest Pack\READ ME.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/cs377/untitled_city_game/untitled_city_game/Consolidated/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/cs377/playtest2/untitled_city_game/Consolidated/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0f6/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
