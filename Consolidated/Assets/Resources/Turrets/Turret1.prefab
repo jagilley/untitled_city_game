@@ -109,12 +109,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  range: 5
+  range: 6
   rotater: {fileID: 5286546175427361301}
   fireRate: 1
   bulletPrefab: {fileID: 3742411552380672991, guid: e9703d74b0d55e945be80f8434548c2d,
     type: 3}
   firePoint: {fileID: 5286546176381261799}
+  lineRenderer: {fileID: 0}
+  usingLaser: 0
+  damageOT: 0
   awake: 0
 --- !u!114 &-338261220454526481
 MonoBehaviour:

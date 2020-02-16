@@ -11,7 +11,8 @@ public class Building : MonoBehaviour
     public int selfnum;
     private Building_Holder bh;
     public GameObject parent_grid;
-    
+    private Material normal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,28 +22,38 @@ public class Building : MonoBehaviour
         alive = false;
         bh = GameObject.FindObjectOfType<Building_Holder>();
         selfnum = bh.num_build;
+
     }
 
-    public void UnOccupy(){
+    public void UnOccupy()
+    {
         Vector3 gridpos = gameObject.transform.position - parent_grid.transform.position;
-        if (parent_grid.GetComponent<test>()){
-            parent_grid.GetComponent<test>().UnOccupy(gridpos);}
-        else {
+        if (parent_grid.GetComponent<test>())
+        {
+            parent_grid.GetComponent<test>().UnOccupy(gridpos);
+        }
+        else
+        {
             parent_grid.GetComponent<TurrPlacer>().UnOccupy(gridpos);
         }
     }
 
-    void OnMouseDown(){
-        if (alive == false){
+    void OnMouseDown()
+    {
+        if (alive == false)
+        {
             return;
         }
-        else{
-            if (awake == false){
+        else
+        {
+            if (awake == false)
+            {
                 menu_holder.GetComponent<CanvasGroup>().alpha = 1f;
                 awake = true;
                 print("hello");
             }
-            else {
+            else
+            {
                 menu_holder.GetComponent<CanvasGroup>().alpha = 0f;
                 awake = false;
             }
@@ -53,11 +64,13 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (awake == true){
-            gameObject.transform.localScale = new Vector3(2f,2f,2f);
+        if (awake == true)
+        {
+            gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
         }
-        else {
-            gameObject.transform.localScale = new Vector3(1f,1f,1f);
+        else
+        {
+            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
         }
     }
 }
