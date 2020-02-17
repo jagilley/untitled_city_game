@@ -42,7 +42,7 @@ public class test : MonoBehaviour
         bh_transform = FindObjectOfType<Building_Holder>().gameObject.transform;
         cam = GameObject.FindObjectOfType<CameraController>().gameObject;
         //blocker = GameObject.FindObjectOfType<Image>().gameObject;
-        blocker.SetActive(false);
+        //blocker.SetActive(false);
         selector = Resources.Load("Selector", typeof(GameObject)) as GameObject;
         normal = Resources.Load("Normal", typeof(Material)) as Material;
     }
@@ -139,7 +139,14 @@ public class test : MonoBehaviour
         if (awake == true)
         {
             blocker.SetActive(true);
-
+            if (Input.GetKeyDown(KeyCode.Escape)){
+                awake = false;
+                blocker.SetActive(false);
+                GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
+                Color c = Color.white;
+                c.a = 0f;
+                highlighter.GetComponent<Renderer>().material.color = c;
+            }
             if (state == 0)
             {
                 if (gold.balance >= gold.build_cost)
@@ -164,6 +171,18 @@ public class test : MonoBehaviour
                 Vector3 mousepos = Input.mousePosition;
                 mousepos.z = 12;
                 Vector3 mp = cam.GetComponent<Camera>().ScreenToWorldPoint(mousepos);
+
+                if (Input.GetKeyDown(KeyCode.Escape)){
+                    
+                    state = 0;
+                    awake = false;
+                    blocker.SetActive(false);
+                    GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
+                    Color c = Color.white;
+                    c.a = 0f;
+                    highlighter.GetComponent<Renderer>().material.color = c;
+                    Object.Destroy(go);
+                }
 
 
                 // code section for moving blocks with arrow keys

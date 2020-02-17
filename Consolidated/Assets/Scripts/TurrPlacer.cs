@@ -35,7 +35,7 @@ public class TurrPlacer : MonoBehaviour
         cam = GameObject.FindObjectOfType<CameraController>().gameObject;
         //this isnt working, so need to set this in the editor manually
         //blocker = GameObject.FindObjectOfType<Blocker>().gameObject;
-        blocker.SetActive(false);
+        //blocker.SetActive(false);
     }
 
 
@@ -128,9 +128,18 @@ public class TurrPlacer : MonoBehaviour
 
         if (awake == true)
         {
+            if (Input.GetKeyDown(KeyCode.Escape)){
+                awake = false;
+                blocker.SetActive(false);
+                GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
+                Color c = Color.white;
+                c.a = 0f;
+                highlighter.GetComponent<Renderer>().material.color = c;
+            }
 
             if (state == 0)
             {
+
                 if (gold.balance >= gold.turr_cost)
                 {
                     // press 1 key to spawn a passive building
@@ -153,6 +162,18 @@ public class TurrPlacer : MonoBehaviour
                 Vector3 mousepos = Input.mousePosition;
                 mousepos.z = 12;
                 Vector3 mp = cam.GetComponent<Camera>().ScreenToWorldPoint(mousepos);
+
+                if (Input.GetKeyDown(KeyCode.Escape)){
+                    
+                    state = 0;
+                    awake = false;
+                    blocker.SetActive(false);
+                    GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
+                    Color c = Color.white;
+                    c.a = 0f;
+                    highlighter.GetComponent<Renderer>().material.color = c;
+                    Object.Destroy(go);
+                }
 
                 /*// code section for moving blocks with arrow keys
                 Vector3 mp = newmove;
