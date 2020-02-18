@@ -48,6 +48,14 @@ public class test : MonoBehaviour
         normal = Resources.Load("Normal", typeof(Material)) as Material;
     }
 
+    //function to find world positions
+    public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z){
+        Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(screenPosition);
+        Plane xy = new Plane(Vector3.up, new Vector3(0,0,z));
+        float distance;
+        xy.Raycast(ray, out distance);
+        return ray.GetPoint(distance);
+    }
 
     //this checks if the current grid space already has a building on it
     bool Occupied(Vector3 grid_pos)
@@ -171,7 +179,7 @@ public class test : MonoBehaviour
                 // code for moving with mouse
                 Vector3 mousepos = Input.mousePosition;
                 mousepos.z = 12;
-                Vector3 mp = cam.GetComponent<Camera>().ScreenToWorldPoint(mousepos);
+                Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
 
                 if (Input.GetKeyDown(KeyCode.Escape)){
                     
