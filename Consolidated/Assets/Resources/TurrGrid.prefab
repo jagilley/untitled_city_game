@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   w: 1
-  h: 2
+  h: 1
   taken: 
 --- !u!65 &4242308332215494681
 BoxCollider:
@@ -73,5 +73,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30122cfc80966134888d462bb5e923c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turr_pf: {fileID: 5286546175427361298, guid: c814d89bcaba0464b95023673d96aace, type: 3}
+  state: 0
+  turr_pf1: {fileID: 5286546175427361298, guid: c814d89bcaba0464b95023673d96aace,
+    type: 3}
+  turr_pf2: {fileID: 8994029485045205224, guid: 53f690fe3a6bd1746ab2520e8b4be667,
+    type: 3}
+  turr_pf3: {fileID: 6684148854221421545, guid: 815abd76f03f60a438b9be1ea683a984,
+    type: 3}
   blocker: {fileID: 5200943529624717220, guid: 8908162f3e15abc44b4ae048f4d1fe70, type: 3}
+  turretshop: {fileID: 0}
+  tss: {fileID: 0}

@@ -8,7 +8,7 @@ public class test : MonoBehaviour
 {
     public int state;
     private GridManager g;
-    private bool awake;
+    public bool awake;
     private Vector3 newmove;
     private GoldManager gold;
     private GameObject building_pf;
@@ -18,11 +18,12 @@ public class test : MonoBehaviour
     private GameObject selector;
     private Material highlight;
     private Material normal;
+    public GameObject passiveshop;
 
     // Start is called before the first frame update
     void Start()
     {
-        //initialize literally everything
+        //initialize literally everything        
         highlight = Resources.Load("Outline", typeof(Material)) as Material;
 
         //gold manager
@@ -32,7 +33,7 @@ public class test : MonoBehaviour
         BoxCollider b = gameObject.GetComponent<BoxCollider>();
         b.center = b.center + new Vector3(0, g.h / 2f, g.w / 2f);
         //b.center = highlighter.transform.position;
-        b.size = new Vector3(3, g.h + 1, g.w + 1);
+        b.size = new Vector3(1, g.h + 1, g.w + 1);
         //b.size = */
         //track when grid is awake or asleep
         state = 0;
@@ -114,7 +115,7 @@ public class test : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 awake = true;
-
+                passiveshop.SetActive(true);
                 GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
                 Color c = Color.white;
                 c.a = .2f;
@@ -152,7 +153,7 @@ public class test : MonoBehaviour
                 if (gold.balance >= gold.build_cost)
                 {
                     // press 1 key to spawn a passive building
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
                     {
                         GameObject hello = GameObject.Instantiate(building_pf, bh_transform);
                         hello.transform.position = new Vector3(0, 0, 0);

@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 487de112f12801e47ab0f2a09cce7854, type: 2}
+  - {fileID: 2100000, guid: 1d2e2fc6979ea3844b8dcc9eaa1ae782, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   alive: 0
   selfnum: 0
   parent_grid: {fileID: 0}
+  normal: {fileID: 2100000, guid: 05c3b35dce48bfb44a9ce93ae526df18, type: 2}
 --- !u!120 &7408362221715372035
 LineRenderer:
   m_ObjectHideFlags: 0

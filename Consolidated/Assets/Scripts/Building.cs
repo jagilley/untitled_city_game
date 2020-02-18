@@ -11,18 +11,19 @@ public class Building : MonoBehaviour
     public int selfnum;
     private Building_Holder bh;
     public GameObject parent_grid;
-    private Material normal;
+    public Material normal;
+    private Material highlighted;
 
     // Start is called before the first frame update
     void Start()
     {
-        menu_holder = Object.FindObjectOfType<CanvasGroup>().gameObject;
+        menu_holder = Object.FindObjectOfType<ud_holder>().gameObject;
         awake = false;
         //should not be live before we drop it into place
         alive = false;
         bh = GameObject.FindObjectOfType<Building_Holder>();
         selfnum = bh.num_build;
-
+        highlighted = gameObject.GetComponent<MeshRenderer>().material;
     }
 
     public void UnOccupy()
@@ -64,13 +65,18 @@ public class Building : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (awake == true)
-        {
-            gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
+        if (!alive){
+            
         }
-        else
-        {
-            gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        else {
+            if (awake == true)
+            {
+                gameObject.GetComponent<Renderer>().material = highlighted;
+            }
+            else
+            {
+                gameObject.GetComponent<Renderer>().material = normal;
+            }
         }
     }
 }

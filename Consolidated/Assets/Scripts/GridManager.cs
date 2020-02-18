@@ -32,7 +32,7 @@ public class GridManager : MonoBehaviour
         box.transform.parent = gameObject.transform;
         box.transform.position = gameObject.transform.position + new Vector3(w / 2f - .5f, 0f, h / 2f - .5f);
         print(box.transform.position);
-        box.transform.localScale = new Vector3(w, 1, h);
+        box.transform.localScale = new Vector3(w, 0.5f, h);
         Color c = Color.white;
         c.a = 0f;
         box.GetComponent<Renderer>().material = transparent;

@@ -59,8 +59,7 @@
      <Compile Include="Assets\AurynSky\Forest Pack\Scripts\MaterialMover.cs" />
      <Compile Include="Assets\AurynSky\Forest Pack\Scripts\Rotator.cs" />
      <Compile Include="Assets\AurynSky\Forest Pack\Scripts\WheelController.cs" />
-     <Compile Include="Assets\Blocker.cs" />
-     <Compile Include="Assets\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Blocker.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\Building_Holder.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
@@ -70,10 +69,14 @@
      <Compile Include="Assets\Scripts\GoldManager.cs" />
      <Compile Include="Assets\Scripts\GoldText.cs" />
      <Compile Include="Assets\Scripts\GridManager.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\MouseEnterStore.cs" />
+     <Compile Include="Assets\Scripts\PassiveShop.cs" />
      <Compile Include="Assets\Scripts\Spawner.cs" />
      <Compile Include="Assets\Scripts\TowerBuilder.cs" />
      <Compile Include="Assets\Scripts\TurrPlacer.cs" />
      <Compile Include="Assets\Scripts\Turret.cs" />
+     <Compile Include="Assets\Scripts\TurretShop.cs" />
      <Compile Include="Assets\Scripts\Upgrade.cs" />
      <Compile Include="Assets\Scripts\test.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
@@ -109,6 +112,7 @@
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+     <Compile Include="Assets\ud_holder.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />

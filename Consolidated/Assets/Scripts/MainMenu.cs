@@ -14,6 +14,8 @@ public class MainMenu : MonoBehaviour
     public GameObject Camera;
     public GameObject titletext;
     public GameObject blocker;
+    public GameObject Gold1;
+    public GameObject Gold2;
     private Color c_b;
 
     private void Awake(){
@@ -52,6 +54,8 @@ public class MainMenu : MonoBehaviour
         titletext.SetActive(false);
         blocker.GetComponent<Image>().color = c_b;
         blocker.SetActive(false);
+        Gold1.SetActive(true);
+        Gold2.SetActive(true);
     }
 
 

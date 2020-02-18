@@ -110,3 +110,4 @@ MonoBehaviour:
   alive: 0
   selfnum: 0
   parent_grid: {fileID: 0}
+  normal: {fileID: 2100000, guid: e56f51207b28528489c399c5777917e9, type: 2}
