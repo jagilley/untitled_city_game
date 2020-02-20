@@ -20,7 +20,8 @@ public class Turret : MonoBehaviour
 
     public LineRenderer lineRenderer;
     public bool usingLaser = false;
-    public int damageOT = 20;
+    public float damageOT = 10f;
+    public float sellPrice = 50f;
 
     // george - I need the turrets to not fire until you place them
     public bool awake;
@@ -127,7 +128,7 @@ public class Turret : MonoBehaviour
     void Lasering()
     {
         targetEnemy.TakeDamage(damageOT * Time.deltaTime);
-        targetEnemy.speed = 1.5f;
+        targetEnemy.speed = 1;
         if (!lineRenderer.enabled)
         {
             lineRenderer.enabled = true;
@@ -135,6 +136,8 @@ public class Turret : MonoBehaviour
         lineRenderer.SetPosition(0, firePoint.position);
         lineRenderer.SetPosition(1, target.position);
     }
+
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

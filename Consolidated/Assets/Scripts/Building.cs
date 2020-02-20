@@ -51,6 +51,18 @@ public class Building : MonoBehaviour
             {
                 menu_holder.GetComponent<CanvasGroup>().alpha = 1f;
                 awake = true;
+                StatSelector.SetName(gameObject.tag);
+                if (gameObject.tag == "GoldMine")
+                {
+                    StatSelector.SetGold(10);
+                    StatSelector.SetSprite(Color.white);
+                }
+                else
+                {
+                    StatSelector.SetDamage(returnDPS());
+                }
+                StatSelector.SetPrice(50f);
+
                 print("hello");
             }
             else
@@ -79,4 +91,23 @@ public class Building : MonoBehaviour
             }
         }
     }
+
+    public float returnDPS()
+    {
+        StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+        if (gameObject.tag == "LightGun")
+        {
+            return 15f;
+        }
+        else if (gameObject.tag == "Laser")
+        {
+            return 10f;
+        }
+        else if (gameObject.tag == "Missile")
+        {
+            return 50f;
+        }
+        return 0;
+    }
+
 }

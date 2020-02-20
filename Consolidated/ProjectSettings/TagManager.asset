@@ -8,6 +8,10 @@ TagManager:
   - Bullet
   - door
   - Waypoints
+  - Laser
+  - LightGun
+  - Missile
+  - StatSprite
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
+        Array.Sort(waypoints, CompareWaypoints);
+        Array.Reverse(waypoints);
     }
     // Update is called once per frame
     void Update()
@@ -57,5 +60,10 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    int CompareWaypoints(GameObject x, GameObject y)
+    {
+        return x.name.CompareTo(y.name);
     }
 }
