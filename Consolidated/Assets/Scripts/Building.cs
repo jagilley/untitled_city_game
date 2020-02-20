@@ -83,6 +83,11 @@ public class Building : MonoBehaviour
         else {
             if (awake == true)
             {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    menu_holder.GetComponent<CanvasGroup>().alpha = 0f;
+                    awake = false;
+                }
                 gameObject.GetComponent<Renderer>().material = highlighted;
             }
             else
@@ -105,7 +110,7 @@ public class Building : MonoBehaviour
         }
         else if (gameObject.tag == "Missile")
         {
-            return 50f;
+            return 30f;
         }
         return 0;
     }
