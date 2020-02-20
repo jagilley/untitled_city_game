@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     
-    private float moveSpeed = .5f;
+    private float moveSpeed = .25f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +16,12 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < 12f){
+            Vector3 temp = transform.position;
+            temp.y = 12f;
+            transform.position = temp;
+        }
+
         if (Input.GetKey(KeyCode.D)) {
             transform.position = transform.position + moveSpeed * new Vector3(1,0,0);
         }

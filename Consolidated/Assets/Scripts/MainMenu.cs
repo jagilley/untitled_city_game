@@ -16,16 +16,22 @@ public class MainMenu : MonoBehaviour
     public GameObject blocker;
     public GameObject Gold1;
     public GameObject Gold2;
+    public GameObject GameManager;
+    public GameObject wave1;
+    public GameObject wave2;
+    public GameObject daymanager;
     private Color c_b;
 
     private void Awake(){
         Startbtn.GetComponent<Button>().onClick.AddListener(() => { StartCoroutine(FadeScreen()); });
         Quitbtn.GetComponent<Button>().onClick.AddListener(QuitGame);
+        daymanager.GetComponent<DayNightController>().daySpeedMultiplier = 0f;
     }
     
     private IEnumerator FadeScreen () {
         Vector3 startpos = Camera.transform.position;
         Vector3 endpos = startpos;
+        daymanager.GetComponent<DayNightController>().daySpeedMultiplier = .25f;
         endpos.y = 12;
         float i = 0f;
         float alpha = 1f;
@@ -56,6 +62,9 @@ public class MainMenu : MonoBehaviour
         blocker.SetActive(false);
         Gold1.SetActive(true);
         Gold2.SetActive(true);
+        GameManager.SetActive(true);
+        wave1.SetActive(true);
+        wave2.SetActive(true);
     }
 
 

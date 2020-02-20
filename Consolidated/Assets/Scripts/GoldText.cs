@@ -7,6 +7,7 @@ public class GoldText : MonoBehaviour
 {
     
     private GoldManager gold;
+    public GameObject goldholder;
     
     // Start is called before the first frame update
     void Start()

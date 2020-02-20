@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    
+    public int state = 0;
     public GameObject Sphere;
     // Start is called before the first frame update
     void Start()
@@ -15,8 +17,12 @@ public class Spawner : MonoBehaviour
         Invoke("SpawnNext", 5f);
     }
     void SpawnNext(){
-        
-        GameObject new_enemy = Instantiate(Sphere, transform.position, transform.rotation);
+        if (state == 0){
+            return;
+        }
+        else {
+            GameObject new_enemy = Instantiate(Sphere, transform.position, transform.rotation);
+        }
     }
 
     // Update is called once per frame
