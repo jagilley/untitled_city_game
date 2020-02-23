@@ -3851,6 +3851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575063422}
   - component: {fileID: 1575063421}
+  - component: {fileID: 1575063423}
   m_Layer: 0
   m_Name: Building_Holder
   m_TagString: Untagged
@@ -3886,6 +3887,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1575063423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575063420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92b59fbe1a0d744995aa5ae8d5d6bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balance: 0
+  gen_buildings: 0
+  build_cost: 0
+  turr_cost: 0
 --- !u!1001 &1581358920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4603,6 +4620,7 @@ GameObject:
   - component: {fileID: 1799798339}
   - component: {fileID: 1799798338}
   - component: {fileID: 1799798337}
+  - component: {fileID: 1799798340}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
@@ -4720,6 +4738,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799798335}
   m_CullTransparentMesh: 0
+--- !u!114 &1799798340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799798335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0309a4c26741f648932e131e2f1b6e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Upgrade_Cost: 0
 --- !u!1001 &1825598815
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public float exRadius = 2f;
     public float damage = 15f;
 
+
     public void Chaser(Transform _target)
     {
         target = _target;
@@ -74,6 +75,7 @@ public class Bullet : MonoBehaviour
         }
         
     }
+
 
     void OnDrawGizmosSelected()
     {

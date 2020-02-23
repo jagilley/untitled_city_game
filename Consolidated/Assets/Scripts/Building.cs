@@ -13,6 +13,7 @@ public class Building : MonoBehaviour
     public GameObject parent_grid;
     public Material normal;
     private Material highlighted;
+    private Renderer objectRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Building : MonoBehaviour
         bh = GameObject.FindObjectOfType<Building_Holder>();
         selfnum = bh.num_build;
         highlighted = gameObject.GetComponent<MeshRenderer>().material;
+        objectRenderer = gameObject.GetComponent<Renderer>();
     }
 
     public void UnOccupy()
@@ -88,11 +90,11 @@ public class Building : MonoBehaviour
                     menu_holder.GetComponent<CanvasGroup>().alpha = 0f;
                     awake = false;
                 }
-                gameObject.GetComponent<Renderer>().material = highlighted;
+                objectRenderer.material = highlighted;
             }
             else
             {
-                gameObject.GetComponent<Renderer>().material = normal;
+                objectRenderer.material = normal;
             }
         }
     }
@@ -102,15 +104,15 @@ public class Building : MonoBehaviour
         StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
         if (gameObject.tag == "LightGun")
         {
-            return 15f;
+            return gameObject.GetComponent<Turret>().returnDamage();
         }
         else if (gameObject.tag == "Laser")
         {
-            return 10f;
+            return gameObject.GetComponent<Turret>().damageOT;
         }
         else if (gameObject.tag == "Missile")
         {
-            return 30f;
+            return gameObject.GetComponent<Turret>().returnDamage();
         }
         return 0;
     }
