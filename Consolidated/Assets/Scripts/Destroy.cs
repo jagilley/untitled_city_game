@@ -13,13 +13,14 @@ public class Destroy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        menu_holder = Object.FindObjectOfType<CanvasGroup>().gameObject;
+        menu_holder = Object.FindObjectOfType<ud_holder>().gameObject;
         btn = gameObject.GetComponent<Button>();
         btn.onClick.AddListener(DestroyClick);
         bh = GameObject.FindObjectOfType<Building_Holder>();
     }
 
     void DestroyClick(){
+        bh.GetComponent<GoldManager>().addGold();
         bh.Destroy_Active();
         menu_holder.GetComponent<CanvasGroup>().alpha = 0f;
     }

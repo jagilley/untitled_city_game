@@ -9,7 +9,7 @@ public class GoldManager : MonoBehaviour
     private int gen_rate;
     public int build_cost;
     public int turr_cost;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +28,16 @@ public class GoldManager : MonoBehaviour
             balance = balance + gen_buildings * gen_rate;    
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public void addGold()
+    {
+        balance += turr_cost / 2;
+    }
+
+    public void spendUpgrade(int upgradeC)
+    {
+        balance -= upgradeC;
     }
 /*
     private void goldupdate(){

@@ -118,6 +118,8 @@ MonoBehaviour:
   lineRenderer: {fileID: 0}
   usingLaser: 0
   damageOT: 0
+  sellPrice: 50
+  bulletDamage: 0
   awake: 0
 --- !u!114 &-338261220454526481
 MonoBehaviour:

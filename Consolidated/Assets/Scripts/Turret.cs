@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -22,6 +23,8 @@ public class Turret : MonoBehaviour
     public bool usingLaser = false;
     public float damageOT = 10f;
     public float sellPrice = 50f;
+    public float bulletDamage = 15f;
+    private Bullet bulletValue;
 
     // george - I need the turrets to not fire until you place them
     public bool awake;
@@ -32,6 +35,13 @@ public class Turret : MonoBehaviour
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         awake = false;
+        if (gameObject.tag == "Missile")
+        {
+            bulletDamage = 35f;
+        }
+
+        bulletValue = bulletPrefab.GetComponent<Bullet>();
+        bulletValue.damage = bulletDamage;
     }
     
     void UpdateTarget()
@@ -63,6 +73,7 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bulletValue.damage = bulletDamage;
         if (awake == false){
             if (usingLaser)
             {
@@ -110,6 +121,7 @@ public class Turret : MonoBehaviour
     {
         GameObject bulletGO = (GameObject) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
+        bullet.damage = bulletDamage;
 
         if (bullet != null)
         {
@@ -137,6 +149,15 @@ public class Turret : MonoBehaviour
         lineRenderer.SetPosition(1, target.position);
     }
 
+    public float returnDamage()
+    {
+        return bulletDamage;
+    }
+
+    public void UpgradeDamage()
+    {
+        bulletPrefab.GetComponent<Bullet>().damage = bulletDamage;
+    }
 
     void OnDrawGizmosSelected()
     {
