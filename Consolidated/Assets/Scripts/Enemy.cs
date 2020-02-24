@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed = 2f;
+    
     // Pull destinations from global waypoints array
     private float dest_x = 0f;
     private float dest_y = 0f;
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        //door_health = GameObject.Find("dh2");
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
         Array.Sort(waypoints, CompareWaypoints);
         Array.Reverse(waypoints);
@@ -58,6 +61,8 @@ public class Enemy : MonoBehaviour
     { 
         if(other.gameObject.tag == "door")
         {
+            //door_health.sizeDelta = new Vector2(door_health.sizeDelta.x-1, door_health.sizeDelta.y);
+            //door_health.sizeDelta = new Vector3(door_health.sizeDelta.x-1, door_health.sizeDelta.y, door_health.sizeDelta.z);
             Destroy(gameObject);
         }
     }

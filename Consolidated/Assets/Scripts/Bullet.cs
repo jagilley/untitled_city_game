@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     private Enemy targetEnemy;
 
     public float speed = 50f;
-    public float exRadius = 2f;
+    public float exRadius = 0.1f;
     public float damage = 15f;
 
 
@@ -69,7 +69,7 @@ public class Bullet : MonoBehaviour
             if (collider.tag == "Enemy")
             {
                 Damage(collider.transform);
-                collider.GetComponent<Renderer>().material.color = Color.red;
+                collider.GetComponent<Renderer>().material.color = collider.GetComponent<Renderer>().material.color + Color.red;
             }
 
         }
