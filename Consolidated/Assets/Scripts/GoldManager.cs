@@ -9,16 +9,19 @@ public class GoldManager : MonoBehaviour
     private int gen_rate;
     public int build_cost;
     public int turr_cost;
+    public int explore_cost;
+    public int research_cost;
 
     // Start is called before the first frame update
     void Start()
     {
         balance = 200;
         gen_buildings = 0;
-        gen_rate = 10;
+        gen_rate = 5;
         build_cost = 100;
         turr_cost = 50;
-
+        explore_cost = 1000;
+        research_cost = 150;
         StartCoroutine( GoldUpdater() );
     }
 

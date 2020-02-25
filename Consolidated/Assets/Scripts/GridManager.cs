@@ -25,7 +25,8 @@ public class GridManager : MonoBehaviour
                 temp.transform.parent = gameObject.transform;
                 temp.transform.position = new Vector3(i, 0, j) + gameObject.transform.position;
                 temp.transform.localScale = new Vector3(size, size, size);
-                taken[i * w + j] = 0;
+                
+                taken[i * h + j] = 0;
             }
         }
         GameObject box = GameObject.CreatePrimitive(PrimitiveType.Cube);

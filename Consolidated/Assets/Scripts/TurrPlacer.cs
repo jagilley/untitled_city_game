@@ -29,8 +29,8 @@ public class TurrPlacer : MonoBehaviour
         g = gameObject.GetComponent<GridManager>();
         //box collider for the grid to know when its clicked on
         BoxCollider b = gameObject.GetComponent<BoxCollider>();
-        b.center = b.center + new Vector3(0, g.h / 2, g.w / 2);
-        b.size = new Vector3(1, 1, g.w + 1);
+        b.center = b.center + new Vector3(g.w / 2, 0, g.h / 2);
+        b.size = new Vector3(g.w + 1, 1, g.h + 1);
         //track when grid is awake or asleep
         state = 0;
         awake = false;
@@ -47,7 +47,7 @@ public class TurrPlacer : MonoBehaviour
     //this checks if the current grid space already has a building on it
     bool Occupied(Vector3 grid_pos)
     {
-        if (g.taken[(int)grid_pos.x * g.w + (int)grid_pos.z] == 0)
+        if (g.taken[(int)grid_pos.x * g.h + (int)grid_pos.z] == 0)
         {
             return (false);
         }
@@ -60,12 +60,12 @@ public class TurrPlacer : MonoBehaviour
     //call this to occupy the current grid space
     void Occupy(Vector3 grid_pos)
     {
-        g.taken[(int)grid_pos.x * g.w + (int)grid_pos.z] = 1;
+        g.taken[(int)grid_pos.x * g.h + (int)grid_pos.z] = 1;
     }
 
     public void UnOccupy(Vector3 grid_pos)
     {
-        g.taken[(int)grid_pos.x * g.w + (int)grid_pos.z] = 0;
+        g.taken[(int)grid_pos.x * g.h + (int)grid_pos.z] = 0;
     }
 
 
@@ -102,6 +102,13 @@ public class TurrPlacer : MonoBehaviour
         return new Vector3(x, 0, y);
     }
 
+    public Vector3 GetWorldPositionOnPlane(Vector3 screenPosition, float z){
+        Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(screenPosition);
+        Plane xy = new Plane(Vector3.up, new Vector3(0,0,z));
+        float distance;
+        xy.Raycast(ray, out distance);
+        return ray.GetPoint(distance);
+    }
 
     // wake up this specific grid when this grid is clicked on 
     void OnMouseDown()
@@ -138,9 +145,10 @@ public class TurrPlacer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape)){
                 awake = false;
                 blocker.SetActive(false);
-                tss.first.GetComponent<CanvasGroup>().alpha = 0;
+                /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
                 tss.second.GetComponent<CanvasGroup>().alpha = 0;
-                tss.third.GetComponent<CanvasGroup>().alpha = 0;
+                tss.third.GetComponent<CanvasGroup>().alpha = 0;*/
+                tss.GetComponent<CanvasGroup>().alpha = 1;
                 turretshop.SetActive(false);
                 GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
                 Color c = Color.white;
@@ -153,12 +161,16 @@ public class TurrPlacer : MonoBehaviour
 
                 if (gold.balance >= gold.turr_cost)
                 {
+                    Vector3 mousepos = Input.mousePosition;
+                    mousepos.z = cam.transform.position.z;
+                    Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                    Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
                     // press 1 key to spawn a passive building
                     if (Input.GetKeyDown(KeyCode.Alpha1))
                     {
-                        tss.first.GetComponent<CanvasGroup>().alpha = 1;
-                        GameObject hello = GameObject.Instantiate(turr_pf1, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
+                        tss.GetComponent<CanvasGroup>().alpha = 1;
+                        GameObject hello = GameObject.Instantiate(turr_pf1,currpos, Quaternion.identity, bh_transform);
+                        //hello.transform.position = new Vector3(0, 2, 0);
                         hello.AddComponent<AudioSource>();
                         hello.GetComponent<Building>().parent_grid = gameObject;
                         newmove = g.transform.position;
@@ -166,23 +178,25 @@ public class TurrPlacer : MonoBehaviour
                     }
                     if (Input.GetKeyDown(KeyCode.Alpha2))
                     {
-                        tss.second.GetComponent<CanvasGroup>().alpha = 1;
-                        GameObject hello = GameObject.Instantiate(turr_pf2, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 2;
+                        if (tss.missile){
+                            tss.GetComponent<CanvasGroup>().alpha = 1;
+                            GameObject hello = GameObject.Instantiate(turr_pf2, currpos, Quaternion.identity,bh_transform);
+                            //hello.transform.position = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 2;}
                     }
                     if (Input.GetKeyDown(KeyCode.Alpha3))
                     {
-                        tss.third.GetComponent<CanvasGroup>().alpha = 1;
-                        GameObject hello = GameObject.Instantiate(turr_pf3, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 3;
+                        if (tss.slow){
+                            tss.GetComponent<CanvasGroup>().alpha = 1;
+                            GameObject hello = GameObject.Instantiate(turr_pf3, currpos,Quaternion.identity, bh_transform);
+                            //hello.transform.position = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 3;}
                     }
 
 
@@ -194,13 +208,12 @@ public class TurrPlacer : MonoBehaviour
                 GameObject go = GameObject.FindObjectOfType<AudioSource>().gameObject;
                 // code for moving with mouse
                 Vector3 mousepos = Input.mousePosition;
-                mousepos.z = 12;
-                Vector3 mp = cam.GetComponent<Camera>().ScreenToWorldPoint(mousepos);
+                mousepos.z = cam.transform.position.z;
+                Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
 
                 if (Input.GetKeyDown(KeyCode.Escape)){
-                    tss.first.GetComponent<CanvasGroup>().alpha = 0;
-                    tss.second.GetComponent<CanvasGroup>().alpha = 0;
-                    tss.third.GetComponent<CanvasGroup>().alpha = 0;
+                    tss.GetComponent<CanvasGroup>().alpha = 0;
+                    
                     state = 0;
                     awake = false;
                     blocker.SetActive(false);
@@ -211,76 +224,81 @@ public class TurrPlacer : MonoBehaviour
                     highlighter.GetComponent<Renderer>().material.color = c;
                     Object.Destroy(go);
                 }
-                
+                Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));                
                 // if we are currently in state 1 and select a different tower
                 if (state == 1){
+
                     if (Input.GetKeyDown(KeyCode.Alpha2)){
-                        tss.first.GetComponent<CanvasGroup>().alpha = 0;
-                        tss.second.GetComponent<CanvasGroup>().alpha = 1;
-                        GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf2, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 2;
+                        if (tss.missile){
+                            /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
+                            tss.second.GetComponent<CanvasGroup>().alpha = 1;*/
+                            GameObject.Destroy(go);
+                            GameObject hello = GameObject.Instantiate(turr_pf2,currpos,Quaternion.identity, bh_transform);
+                            //Vector3 pos = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 2;}
                     }
                     if (Input.GetKeyDown(KeyCode.Alpha3)){
-                        tss.first.GetComponent<CanvasGroup>().alpha = 0;
-                        tss.third.GetComponent<CanvasGroup>().alpha = 1;
-                        GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf3, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 3;
+                        if (tss.slow){
+                            /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
+                            tss.third.GetComponent<CanvasGroup>().alpha = 1;*/
+                            GameObject.Destroy(go);
+                            GameObject hello = GameObject.Instantiate(turr_pf3, currpos,Quaternion.identity, bh_transform);
+                            //hello.transform.position = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 3;}
                     }
                 }
                 // if we are currently in state 2 and select a different tower
                 if (state == 2){
                     if (Input.GetKeyDown(KeyCode.Alpha1)){
-                        tss.second.GetComponent<CanvasGroup>().alpha = 0;
-                        tss.first.GetComponent<CanvasGroup>().alpha = 1;
+                        /*tss.second.GetComponent<CanvasGroup>().alpha = 0;
+                        tss.first.GetComponent<CanvasGroup>().alpha = 1;*/
                         GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf1, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
+                        GameObject hello = GameObject.Instantiate(turr_pf1, currpos,Quaternion.identity, bh_transform);
+                        //hello.transform.position = new Vector3(0, 2, 0);
                         hello.AddComponent<AudioSource>();
                         hello.GetComponent<Building>().parent_grid = gameObject;
                         newmove = g.transform.position;
                         state = 1;
                     }
                     if (Input.GetKeyDown(KeyCode.Alpha3)){
-                        tss.third.GetComponent<CanvasGroup>().alpha = 1;
-                        tss.second.GetComponent<CanvasGroup>().alpha = 0;
-                        GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf3, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 3;
+                        if (tss.slow){
+                            /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
+                            tss.second.GetComponent<CanvasGroup>().alpha = 0;*/
+                            GameObject.Destroy(go);
+                            GameObject hello = GameObject.Instantiate(turr_pf3, currpos,Quaternion.identity, bh_transform);
+                            //hello.transform.position = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 3;}
                     }
                 }
                 // if we are currently in state 3 and select a different tower
                 if (state == 3){
                     if (Input.GetKeyDown(KeyCode.Alpha2)){
-                        tss.second.GetComponent<CanvasGroup>().alpha = 1;
-                        tss.third.GetComponent<CanvasGroup>().alpha = 0;
-                        GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf2, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
-                        hello.AddComponent<AudioSource>();
-                        hello.GetComponent<Building>().parent_grid = gameObject;
-                        newmove = g.transform.position;
-                        state = 2;
+                        if (tss.missile){
+                            /*tss.second.GetComponent<CanvasGroup>().alpha = 1;
+                            tss.third.GetComponent<CanvasGroup>().alpha = 0;*/
+                            GameObject.Destroy(go);
+                            GameObject hello = GameObject.Instantiate(turr_pf2, currpos,Quaternion.identity, bh_transform);
+                            //hello.transform.position = new Vector3(0, 2, 0);
+                            hello.AddComponent<AudioSource>();
+                            hello.GetComponent<Building>().parent_grid = gameObject;
+                            newmove = g.transform.position;
+                            state = 2;}
                     }
                     if (Input.GetKeyDown(KeyCode.Alpha1)){
-                        tss.third.GetComponent<CanvasGroup>().alpha = 1;
-                        tss.first.GetComponent<CanvasGroup>().alpha = 0;
+                        /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
+                        tss.first.GetComponent<CanvasGroup>().alpha = 0;*/
                         GameObject.Destroy(go);
-                        GameObject hello = GameObject.Instantiate(turr_pf1, bh_transform);
-                        hello.transform.position = new Vector3(0, 2, 0);
+                        GameObject hello = GameObject.Instantiate(turr_pf1, currpos,Quaternion.identity, bh_transform);
+                        //hello.transform.position = new Vector3(0, 2, 0);
                         hello.AddComponent<AudioSource>();
                         hello.GetComponent<Building>().parent_grid = gameObject;
                         newmove = g.transform.position;
@@ -295,9 +313,10 @@ public class TurrPlacer : MonoBehaviour
 
                     if (!Occupied(grid_pos))
                     {
-                        tss.first.GetComponent<CanvasGroup>().alpha = 0;
+                        tss.GetComponent<CanvasGroup>().alpha = 0;
+                        /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
                         tss.second.GetComponent<CanvasGroup>().alpha = 0;
-                        tss.third.GetComponent<CanvasGroup>().alpha = 0;
+                        tss.third.GetComponent<CanvasGroup>().alpha = 0;*/
                         turretshop.SetActive(false);
                         Occupy(grid_pos);
                         state = 0;

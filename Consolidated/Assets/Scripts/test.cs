@@ -12,6 +12,9 @@ public class test : MonoBehaviour
     private Vector3 newmove;
     private GoldManager gold;
     private GameObject building_pf;
+    private GameObject explore_pf;
+    private GameObject missile_pf;
+    private GameObject slow_pf;
     private Transform bh_transform;
     public GameObject cam;
     public GameObject blocker;
@@ -19,6 +22,7 @@ public class test : MonoBehaviour
     private Material highlight;
     private Material normal;
     public GameObject passiveshop;
+    public TurretShop turrshop;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,9 @@ public class test : MonoBehaviour
         awake = false;
         //passive building prefab and holder 
         building_pf = Resources.Load("Building", typeof(GameObject)) as GameObject;
+        explore_pf = Resources.Load("Explorer", typeof(GameObject)) as GameObject;
+        missile_pf = Resources.Load("missileresearch", typeof(GameObject)) as GameObject;
+        slow_pf = Resources.Load("slowresearch", typeof(GameObject)) as GameObject;
         bh_transform = FindObjectOfType<Building_Holder>().gameObject.transform;
         cam = GameObject.FindObjectOfType<CameraController>().gameObject;
         //blocker = GameObject.FindObjectOfType<Image>().gameObject;
@@ -141,6 +148,45 @@ public class test : MonoBehaviour
         }
     }
 
+    void switch1(GameObject go, Vector3 currpos){
+        if (gold.balance > gold.build_cost){
+            GameObject.Destroy(go);
+            GameObject hello = GameObject.Instantiate(building_pf,currpos,Quaternion.identity, bh_transform);
+            hello.AddComponent<AudioSource>();
+            hello.GetComponent<Building>().parent_grid = gameObject;
+            newmove = g.transform.position;
+            state = 1;}
+    }
+    void switch2(GameObject go, Vector3 currpos){
+        if (gold.balance > gold.explore_cost){
+            GameObject.Destroy(go);
+            GameObject hello = GameObject.Instantiate(explore_pf,currpos,Quaternion.identity, bh_transform);
+            hello.AddComponent<AudioSource>();
+            hello.GetComponent<Building>().parent_grid = gameObject;
+            newmove = g.transform.position;
+            state = 2;
+        }
+    }
+    void switch3(GameObject go, Vector3 currpos){
+        if (gold.balance > gold.research_cost){
+            GameObject.Destroy(go);
+            GameObject hello = GameObject.Instantiate(missile_pf,currpos,Quaternion.identity, bh_transform);
+            hello.AddComponent<AudioSource>();
+            hello.GetComponent<Building>().parent_grid = gameObject;
+            newmove = g.transform.position;
+            state = 3;}
+    }
+    void switch4(GameObject go, Vector3 currpos){
+        if (gold.balance > gold.research_cost){
+            GameObject.Destroy(go);
+            GameObject hello = GameObject.Instantiate(slow_pf,currpos,Quaternion.identity, bh_transform);
+            hello.AddComponent<AudioSource>();
+            hello.GetComponent<Building>().parent_grid = gameObject;
+            newmove = g.transform.position;
+            state = 4;}
+    }
+    
+    
     // Update is called once per frame
     void Update()
     {
@@ -158,17 +204,71 @@ public class test : MonoBehaviour
             }
             if (state == 0)
             {
-                if (gold.balance >= gold.build_cost)
-                {
-                    // press 1 key to spawn a passive building
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                // press 1 key to spawn a passive building
+                if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                    if (gold.balance > gold.build_cost)
                     {
-                        GameObject hello = GameObject.Instantiate(building_pf, bh_transform);
-                        hello.transform.position = new Vector3(0, 0, 0);
+                        Vector3 mousepos = Input.mousePosition;
+                        mousepos.z = cam.transform.position.z;
+                        Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                        
+                        GameObject hello = GameObject.Instantiate(building_pf,currpos, Quaternion.identity, bh_transform);
+                        
+                        hello.AddComponent<AudioSource>();
+                        hello.GetComponent<Building>().parent_grid = gameObject;
+                        newmove = g.transform.position;
+                        state = 1;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                    if (gold.balance > gold.explore_cost)
+                    {
+                        Vector3 mousepos = Input.mousePosition;
+                        mousepos.z = cam.transform.position.z;
+                        Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                                    
+                        GameObject hello = GameObject.Instantiate(explore_pf,currpos, Quaternion.identity, bh_transform);
+                        
                         hello.AddComponent<AudioSource>();
                         hello.GetComponent<Building>().parent_grid = gameObject;
                         newmove = g.transform.position;
                         state = 2;
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha3)) {
+                    if (gold.balance > gold.research_cost)
+                    {
+                        Vector3 mousepos = Input.mousePosition;
+                        mousepos.z = cam.transform.position.z;
+                        Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                                    
+                        GameObject hello = GameObject.Instantiate(missile_pf,currpos, Quaternion.identity, bh_transform);
+                        
+                        hello.AddComponent<AudioSource>();
+                        hello.GetComponent<Building>().parent_grid = gameObject;
+                        newmove = g.transform.position;
+                        state = 3;
+                        
+                    }
+                }
+                if (Input.GetKeyDown(KeyCode.Alpha4)) {
+                    if (gold.balance > gold.research_cost)
+                    {
+                        Vector3 mousepos = Input.mousePosition;
+                        mousepos.z = cam.transform.position.z;
+                        Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                                    
+                        GameObject hello = GameObject.Instantiate(slow_pf,currpos, Quaternion.identity, bh_transform);
+                        
+                        hello.AddComponent<AudioSource>();
+                        hello.GetComponent<Building>().parent_grid = gameObject;
+                        newmove = g.transform.position;
+                        state = 4;
+                        
                     }
                 }
             }
@@ -178,7 +278,7 @@ public class test : MonoBehaviour
                 GameObject go = GameObject.FindObjectOfType<AudioSource>().gameObject;
                 // code for moving with mouse
                 Vector3 mousepos = Input.mousePosition;
-                mousepos.z = 12;
+                mousepos.z = cam.transform.position.z;
                 Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
 
                 if (Input.GetKeyDown(KeyCode.Escape)){
@@ -192,7 +292,55 @@ public class test : MonoBehaviour
                     highlighter.GetComponent<Renderer>().material.color = c;
                     Object.Destroy(go);
                 }
+                Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
 
+                if (state == 1){
+                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                        switch2(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                        switch3(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                        switch4(go, currpos);
+                    }
+                }
+
+                if (state == 2){
+                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                        switch1(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                        switch3(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                        switch4(go, currpos);
+                    }
+                }
+
+                if (state == 3){
+                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                        switch1(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                        switch2(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                        switch4(go, currpos);
+                    }
+                }
+
+                if (state == 4){
+                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                        switch1(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                        switch2(go, currpos);
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                        switch3(go, currpos);
+                    }
+                }
 
                 // code section for moving blocks with arrow keys
                 /*Vector3 mp = newmove;
@@ -220,13 +368,24 @@ public class test : MonoBehaviour
                     if (!Occupied(grid_pos))
                     {
                         Occupy(grid_pos);
+                        if (state == 1){
+                            //update gold generation
+                            gold.gen_buildings++;
+                            gold.balance -= gold.build_cost;
+                        }
+
+                        if (state == 3){
+                            turrshop.missile = true;
+                        }
+                        if (state == 4){
+                            turrshop.slow = true;
+                        }
+
                         state = 0;
                         awake = false;
                         go.GetComponent<Building>().alive = true;
                         go.GetComponent<Renderer>().material = normal;
-                        //update gold generation
-                        gold.gen_buildings++;
-                        gold.balance -= gold.build_cost;
+                        
                         blocker.SetActive(false);
                         GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
                         Color c = Color.white;

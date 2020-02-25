@@ -150,7 +150,7 @@ MonoBehaviour:
   usingLaser: 1
   damageOT: 10
   sellPrice: 50
-  bulletDamage: 0
+  bulletDamage: 15
   awake: 0
 --- !u!114 &1965074991759137717
 MonoBehaviour:

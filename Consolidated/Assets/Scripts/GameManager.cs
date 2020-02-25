@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public int state;
-    public GameObject spawner;
+    //public GameObject spawner;
     public float timer;
     public GameObject wavetimer;
     private Spawner spawnerscript;
     private float clock;
     private int day;
     public GameObject daytimer;
+    private Spawner[] spawners;
+    public int activespawners;
     
     // Start is called before the first frame update
     void Start()
@@ -21,9 +23,21 @@ public class GameManager : MonoBehaviour
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
         timer = 64;
+        // 64
         clock = 300;
         day = 0;
-        spawnerscript = spawner.GetComponent<Spawner>();
+        spawners = GameObject.FindObjectsOfType<Spawner>();
+        activespawners = 2;
+        //spawnerscript = spawner.GetComponent<Spawner>();
+    }
+
+    public void ExploreUp(){
+        activespawners = 6;
+        CameraController cam = FindObjectOfType<CameraController>();
+        if (cam.exploration == 0){
+            cam.exploration = 1;
+            cam.PanOver();
+        }
     }
 
     /* night starts at 6pm and goes to 6am (12 hrs -> 48 seconds) */
@@ -40,15 +54,21 @@ public class GameManager : MonoBehaviour
                 //print("here1");
                 state = 1;
                 timer = 48;
-                //spawner.SetActive(true);
-                spawnerscript.state = 1;
+                for (int i = 0; i < activespawners; i++){
+                    Spawner tmp1 = spawners[i];
+                    tmp1.state = 1;
+                }
+                
             }
             else {
                 state = 0;
                 //print("here2");
                 timer = 48;
                 //spawner.SetActive(false);
-                spawnerscript.state = 0;
+                for (int i = 0; i < activespawners; i++){
+                    Spawner tmp1 = spawners[i];
+                    tmp1.state = 0;
+                }
             }
         }
 

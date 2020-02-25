@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
     }
 
     private void StartGame(){
+        Camera.GetComponent<CameraController>().exploration = 0;
         Startbtn.SetActive(false);
         Quitbtn.SetActive(false);
         titletext.SetActive(false);

@@ -20,9 +20,9 @@ public class PassiveShop : MonoBehaviour
     {
         if (buildgrid.GetComponent<test>().awake) {
             gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            if (Input.GetKeyDown(KeyCode.Alpha1)){
-               first.GetComponent<CanvasGroup>().alpha = 1;
-            }
+            //if (Input.GetKeyDown(KeyCode.Alpha1)){
+            first.GetComponent<CanvasGroup>().alpha = 1;
+            //}
         }
         else {
             first.GetComponent<CanvasGroup>().alpha = 0;

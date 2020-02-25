@@ -12,6 +12,10 @@ TagManager:
   - LightGun
   - Missile
   - StatSprite
+  - GoldMine
+  - Explorer
+  - slowresearch
+  - missileresearch
   layers:
   - Default
   - TransparentFX
