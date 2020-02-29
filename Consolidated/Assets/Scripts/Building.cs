@@ -14,6 +14,9 @@ public class Building : MonoBehaviour
     public Material normal;
     private Material highlighted;
     private Renderer objectRenderer;
+    private GameObject[] lasers;
+    private GameObject[] lightguns;
+    private GameObject[] missiles;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +62,16 @@ public class Building : MonoBehaviour
                     StatSelector.SetGold(10);
                     StatSelector.SetSprite(Color.white);
                 }
+                else if (gameObject.tag == "missileresearch")
+                {
+                    StatSelector.SetNumber(ReturnMissileLength());
+                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                }
+                else if (gameObject.tag == "slowresearch")
+                {
+                    StatSelector.SetNumber(ReturnLaserLength());
+                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                }
                 else
                 {
                     StatSelector.SetDamage(returnDPS());
@@ -97,6 +110,19 @@ public class Building : MonoBehaviour
                 objectRenderer.material = normal;
             }
         }
+
+        missiles = GameObject.FindGameObjectsWithTag("missileresearch");
+        lasers = GameObject.FindGameObjectsWithTag("slowresearch");
+    }
+
+    public int ReturnMissileLength()
+    {
+        return missiles.Length;
+    }
+
+    public int ReturnLaserLength()
+    {
+        return lasers.Length;
     }
 
     public float returnDPS()

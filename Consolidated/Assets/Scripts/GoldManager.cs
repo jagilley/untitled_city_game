@@ -16,7 +16,7 @@ public class GoldManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        balance = 2000;
+        balance = 200;
         health = 100;
         gen_buildings = 0;
         gen_rate = 5;

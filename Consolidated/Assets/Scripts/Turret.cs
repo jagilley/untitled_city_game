@@ -25,6 +25,7 @@ public class Turret : MonoBehaviour
     public float sellPrice = 50f;
     public float bulletDamage = 15f;
     private Bullet bulletValue;
+    private Building values;
 
     // george - I need the turrets to not fire until you place them
     public bool awake;
@@ -42,6 +43,7 @@ public class Turret : MonoBehaviour
 
         bulletValue = bulletPrefab.GetComponent<Bullet>();
         bulletValue.damage = bulletDamage;
+        values = gameObject.GetComponent<Building>();
     }
     
     void UpdateTarget()
@@ -73,6 +75,16 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.tag == "Missile")
+        {
+            bulletDamage = values.ReturnMissileLength() * 5 + 15;
+        }
+
+        if (gameObject.tag == "Laser")
+        {
+            damageOT = values.ReturnLaserLength() * 2 + 10;
+        }
+
         bulletValue.damage = bulletDamage;
         if (awake == false){
             if (usingLaser)

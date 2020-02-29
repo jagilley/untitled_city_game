@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = System.Object;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject daytimer;
     private Spawner[] spawners;
     public int activespawners;
-    
+
     // Start is called before the first frame update
     void Start()
     {
