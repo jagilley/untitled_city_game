@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
     public GameObject wave1;
     public GameObject wave2;
     public GameObject daymanager;
+    public GameObject health1;
+    public GameObject health2;
     private Color c_b;
 
     private void Awake(){
@@ -66,6 +68,8 @@ public class MainMenu : MonoBehaviour
         GameManager.SetActive(true);
         wave1.SetActive(true);
         wave2.SetActive(true);
+        health1.SetActive(true);
+        health2.SetActive(true);
     }
 
 

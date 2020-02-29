@@ -81,6 +81,7 @@ public class test : MonoBehaviour
     void Occupy(Vector3 grid_pos)
     {
         g.taken[(int)grid_pos.x * g.w + (int)grid_pos.z] = 1;
+        print((int)grid_pos.x * g.w + (int)grid_pos.z);
     }
 
     public void UnOccupy(Vector3 grid_pos)

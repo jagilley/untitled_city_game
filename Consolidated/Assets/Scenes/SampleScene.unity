@@ -296,6 +296,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485820171}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -913,6 +918,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485820171}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -3549,6 +3559,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485820171}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -3780,6 +3795,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 484081433}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -4244,7 +4264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1257304270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4736,7 +4756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1474844894
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5999,6 +6019,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 484081433}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -6605,6 +6630,8 @@ MonoBehaviour:
   wave1: {fileID: 7985036}
   wave2: {fileID: 2042079132}
   daymanager: {fileID: 540908037}
+  health1: {fileID: 0}
+  health2: {fileID: 0}
 --- !u!1 &1845151370
 GameObject:
   m_ObjectHideFlags: 0
@@ -7307,6 +7334,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 484081433}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451716733403519, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_Color.r
@@ -8154,7 +8186,7 @@ PrefabInstance:
     - target: {fileID: 3023519085743540638, guid: 1cf7a1f71a08407488fd23b0efab55c8,
         type: 3}
       propertyPath: w
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3023519085743540639, guid: 1cf7a1f71a08407488fd23b0efab55c8,
         type: 3}
@@ -8361,6 +8393,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485820171}
     m_Modifications:
+    - target: {fileID: 2611451716733403517, guid: 49deaeb310744794d9299163add6157a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611451717684706926, guid: 49deaeb310744794d9299163add6157a,
         type: 3}
       propertyPath: m_LocalPosition.x

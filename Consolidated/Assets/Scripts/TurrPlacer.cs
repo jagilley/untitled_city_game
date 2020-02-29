@@ -119,6 +119,7 @@ public class TurrPlacer : MonoBehaviour
             {
                 awake = true;
                 turretshop.SetActive(true);
+                turretshop.GetComponent<CanvasGroup>().alpha = 1;
                 blocker.SetActive(true);
                 GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
                 Color c = Color.white;
