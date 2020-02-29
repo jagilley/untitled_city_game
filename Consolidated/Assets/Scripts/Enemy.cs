@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed = 2f;
-    
+    int cyl_health=cylinder.cyl_health;
     // Pull destinations from global waypoints array
     private float dest_x = 0f;
     private float dest_y = 0f;
@@ -24,12 +24,14 @@ public class Enemy : MonoBehaviour
     int current = 0;
     float rotSpeed;
     float WPradius = 0.25f;
-
+    public Transform BuildGrid;
+    public GameObject bg;
 
     void Start()
     {
         //door_health = GameObject.Find("dh2");
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
+        bg = GameObject.Find("BuildGrid");
         Array.Sort(waypoints, CompareWaypoints);
         Array.Reverse(waypoints);
     }
@@ -50,6 +52,16 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(Vector3.Distance(bg.transform.position,transform.position) <= 4)
+        {
+            //door_health.sizeDelta = new Vector2(door_health.sizeDelta.x-1, door_health.sizeDelta.y);
+            //door_health.sizeDelta = new Vector3(door_health.sizeDelta.x-1, door_health.sizeDelta.y, door_health.sizeDelta.z);
+            //Debug.Log(cyl_health);
+            cylinder.cyl_health = cylinder.cyl_health - 1;
+
+            Destroy(gameObject);
+        }
     }
 
     public void TakeDamage(float amount)
@@ -59,10 +71,13 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     { 
-        if(other.gameObject.tag == "door")
+        if(Vector3.Distance(BuildGrid.position,transform.position) < 3)
         {
             //door_health.sizeDelta = new Vector2(door_health.sizeDelta.x-1, door_health.sizeDelta.y);
             //door_health.sizeDelta = new Vector3(door_health.sizeDelta.x-1, door_health.sizeDelta.y, door_health.sizeDelta.z);
+            //Debug.Log(cyl_health);
+            cylinder.cyl_health = cylinder.cyl_health - 1;
+            Debug.Log(cylinder.cyl_health);
             Destroy(gameObject);
         }
     }

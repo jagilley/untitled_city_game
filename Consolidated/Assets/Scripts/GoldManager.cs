@@ -5,6 +5,7 @@ using UnityEngine;
 public class GoldManager : MonoBehaviour
 {
     public int balance;
+    public int health;
     public int gen_buildings;
     private int gen_rate;
     public int build_cost;
@@ -16,6 +17,7 @@ public class GoldManager : MonoBehaviour
     void Start()
     {
         balance = 200;
+        health = 100;
         gen_buildings = 0;
         gen_rate = 5;
         build_cost = 100;

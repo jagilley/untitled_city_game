@@ -16,6 +16,7 @@ TagManager:
   - Explorer
   - slowresearch
   - missileresearch
+  - cylinder
   layers:
   - Default
   - TransparentFX
