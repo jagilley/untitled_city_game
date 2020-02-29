@@ -26,24 +26,6 @@ public class Building_Holder : MonoBehaviour
         Destroy(last);
     }
 
-    public void Upgrade_Active()
-    {
-        if (GetComponent<GoldManager>().balance < 25f)
-        {
-            Debug.Log("Not enough gold");
-        }
-        else if (last.gameObject.tag != "GoldMine")
-        {
-            last.GetComponent<Turret>().bulletDamage += 5f;
-            last.GetComponent<Turret>().UpgradeDamage();
-            last.GetComponent<Turret>().damageOT += 2f;
-            StatSelector.SetDamage(last.GetComponent<Building>().returnDPS());
-        }
-        else
-        {
-            Debug.Log("This is not a turret");
-        }
-    }
 
     // Update is called once per frame
     void LateUpdate()

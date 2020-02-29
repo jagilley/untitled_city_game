@@ -375,11 +375,18 @@ public class test : MonoBehaviour
                             gold.balance -= gold.build_cost;
                         }
 
+                        if (state == 2)
+                        {
+                            gold.balance -= gold.explore_cost;
+                        }
+
                         if (state == 3){
                             turrshop.missile = true;
+                            gold.balance -= gold.research_cost;
                         }
                         if (state == 4){
                             turrshop.slow = true;
+                            gold.balance -= gold.research_cost;
                         }
 
                         state = 0;

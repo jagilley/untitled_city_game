@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5185170775715812557}
   m_Layer: 0
   m_Name: slowresearch
-  m_TagString: missileresearch
+  m_TagString: slowresearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

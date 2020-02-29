@@ -38,6 +38,12 @@ public class StatSelector : MonoBehaviour
     {
         buildName = newName;
     }
+
+    public static void SetNumber(float numBuild)
+    {
+        PS = "DmgUp: " + numBuild * 5;
+    }
+
     public static void SetDamage(float newDmg)
     {
         PS = "DPS: " + newDmg;
