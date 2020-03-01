@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using TMPro.SpriteAssetUtilities;
 using UnityEngine;
@@ -46,7 +47,7 @@ public class StatSelector : MonoBehaviour
 
     public static void SetDamage(float newDmg)
     {
-        PS = "DPS: " + newDmg;
+        PS = "DMG: " + newDmg;
     }
 
     public static void SetGold(float gold)
@@ -56,7 +57,13 @@ public class StatSelector : MonoBehaviour
 
     public static void SetPrice(float price)
     {
-        SC = "Sell For: " + price + "G";
+        SC = "Sell: " + price + " Gold";
+    }
+
+    public static void ExploreInfo()
+    {
+        PS = "Expands Map";
+        SC = "0 Gold on Sell";
     }
 
     public static void SetSprite(Color color)

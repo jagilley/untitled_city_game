@@ -35,7 +35,7 @@ public class GoldManager : MonoBehaviour
         }
     }
 
-    public void addGold()
+    public void addGold(float cost)
     {
         balance += turr_cost / 2;
     }
