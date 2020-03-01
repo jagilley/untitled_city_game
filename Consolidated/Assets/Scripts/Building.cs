@@ -17,6 +17,7 @@ public class Building : MonoBehaviour
     private GameObject[] lasers;
     private GameObject[] lightguns;
     private GameObject[] missiles;
+    private GoldManager g;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class Building : MonoBehaviour
         selfnum = bh.num_build;
         highlighted = gameObject.GetComponent<MeshRenderer>().material;
         objectRenderer = gameObject.GetComponent<Renderer>();
+        g = Object.FindObjectOfType<GoldManager>();
     }
 
     public void UnOccupy()
@@ -61,22 +63,31 @@ public class Building : MonoBehaviour
                 {
                     StatSelector.SetGold(10);
                     StatSelector.SetSprite(Color.white);
+                    StatSelector.SetPrice(g.build_cost / 2);
                 }
                 else if (gameObject.tag == "missileresearch")
                 {
                     StatSelector.SetNumber(ReturnMissileLength());
                     StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                    StatSelector.SetPrice(g.research_cost / 2);
                 }
                 else if (gameObject.tag == "slowresearch")
                 {
                     StatSelector.SetNumber(ReturnLaserLength());
                     StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                    StatSelector.SetPrice(g.research_cost / 2);
+                }
+                else if (gameObject.tag == "Explorer")
+                {
+                    StatSelector.ExploreInfo();
+                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
                 }
                 else
                 {
                     StatSelector.SetDamage(returnDPS());
+                    StatSelector.SetPrice(g.turr_cost / 2);
                 }
-                StatSelector.SetPrice(50f);
+                
 
                 print("hello");
             }

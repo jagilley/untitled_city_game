@@ -20,7 +20,6 @@ public class Destroy : MonoBehaviour
     }
 
     void DestroyClick(){
-        bh.GetComponent<GoldManager>().addGold();
         bh.Destroy_Active();
         menu_holder.GetComponent<CanvasGroup>().alpha = 0f;
     }

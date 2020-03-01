@@ -10,7 +10,8 @@ public class Building_Holder : MonoBehaviour
     public int num_active;
     public int num_build;
     private bool on;
-    
+    private GoldManager g;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,22 @@ public class Building_Holder : MonoBehaviour
         num_build = 0;
         last = gameObject;
         on = false;
+        g = Object.FindObjectOfType<GoldManager>();
     }
 
     public void Destroy_Active(){
+        if (last.tag == "GoldMine")
+        {
+            g.addGold(g.build_cost);
+        }
+        else if(last.tag == "slowresearch" || last.tag == "missileresearch")
+        {
+            g.addGold(g.research_cost);
+        }
+        else
+        {
+            g.addGold(g.turr_cost);
+        }
         last.GetComponent<Building>().UnOccupy();
         Destroy(last);
     }
