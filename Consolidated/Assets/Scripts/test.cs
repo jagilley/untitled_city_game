@@ -23,6 +23,7 @@ public class test : MonoBehaviour
     private Material normal;
     public GameObject passiveshop;
     public TurretShop turrshop;
+    private nogold ng;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,7 @@ public class test : MonoBehaviour
         //blocker.SetActive(false);
         selector = Resources.Load("Selector", typeof(GameObject)) as GameObject;
         normal = Resources.Load("Normal", typeof(Material)) as Material;
+        ng = Object.FindObjectOfType<nogold>();
     }
 
     //function to find world positions
@@ -126,6 +128,9 @@ public class test : MonoBehaviour
     // wake up this specific grid when this grid is clicked on 
     void OnMouseDown()
     {
+        if (gold.balance < gold.build_cost){
+            ng.Fade();
+        }
         if (awake == false && gold.balance >= gold.build_cost)
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -157,6 +162,9 @@ public class test : MonoBehaviour
             hello.GetComponent<Building>().parent_grid = gameObject;
             newmove = g.transform.position;
             state = 1;}
+        else {
+            ng.Fade();
+        }
     }
     void switch2(GameObject go, Vector3 currpos){
         if (gold.balance > gold.explore_cost){
@@ -167,6 +175,9 @@ public class test : MonoBehaviour
             newmove = g.transform.position;
             state = 2;
         }
+        else {
+            ng.Fade();
+        }
     }
     void switch3(GameObject go, Vector3 currpos){
         if (gold.balance > gold.research_cost){
@@ -176,6 +187,9 @@ public class test : MonoBehaviour
             hello.GetComponent<Building>().parent_grid = gameObject;
             newmove = g.transform.position;
             state = 3;}
+        else {
+            ng.Fade();
+        }
     }
     void switch4(GameObject go, Vector3 currpos){
         if (gold.balance > gold.research_cost){
@@ -185,6 +199,9 @@ public class test : MonoBehaviour
             hello.GetComponent<Building>().parent_grid = gameObject;
             newmove = g.transform.position;
             state = 4;}
+        else {
+            ng.Fade();
+        }
     }
     
     
@@ -221,6 +238,9 @@ public class test : MonoBehaviour
                         newmove = g.transform.position;
                         state = 1;
                     }
+                    else {
+                        ng.Fade();
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha2)) {
                     if (gold.balance > gold.explore_cost)
@@ -236,6 +256,9 @@ public class test : MonoBehaviour
                         hello.GetComponent<Building>().parent_grid = gameObject;
                         newmove = g.transform.position;
                         state = 2;
+                    }
+                    else {
+                        ng.Fade();
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha3)) {
@@ -254,6 +277,9 @@ public class test : MonoBehaviour
                         state = 3;
                         
                     }
+                    else {
+                        ng.Fade();
+                    }
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4)) {
                     if (gold.balance > gold.research_cost)
@@ -270,6 +296,9 @@ public class test : MonoBehaviour
                         newmove = g.transform.position;
                         state = 4;
                         
+                    }
+                    else {
+                        ng.Fade();
                     }
                 }
             }

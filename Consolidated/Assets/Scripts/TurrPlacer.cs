@@ -19,6 +19,7 @@ public class TurrPlacer : MonoBehaviour
     public GameObject blocker;
     public GameObject turretshop;
     public TurretShop tss;
+    private nogold ng;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class TurrPlacer : MonoBehaviour
         //blocker = GameObject.FindObjectOfType<Blocker>().gameObject;
         //blocker.SetActive(false);
         tss = turretshop.GetComponent<TurretShop>();
+        ng = Object.FindObjectOfType<nogold>();
     }
 
 
@@ -113,6 +115,9 @@ public class TurrPlacer : MonoBehaviour
     // wake up this specific grid when this grid is clicked on 
     void OnMouseDown()
     {
+        if (gold.balance < gold.turr_cost){
+            ng.Fade();
+        }
         if (!EventSystem.current.IsPointerOverGameObject() && gold.balance >= gold.turr_cost)
         {
             if (awake == false)
@@ -201,6 +206,9 @@ public class TurrPlacer : MonoBehaviour
                     }
 
 
+                }
+                else {
+                    ng.Fade();
                 }
             }
             else

@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     public GameObject daytimer;
     private Spawner[] spawners;
     public int activespawners;
+    public GameObject Over;
+    public GoldManager goldManager;
 
     // Start is called before the first frame update
     void Start()
     {
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
-        timer = 64;
+        timer = 1;
         // 64
         clock = 300;
         day = 0;
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (goldManager.health < 1) {
+            Time.timeScale = 0;
+            Over.SetActive(true);
+        }
+
         if (clock > 2400){
             clock = 0;
             day++;

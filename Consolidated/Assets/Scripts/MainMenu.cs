@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour
     public GameObject daymanager;
     public GameObject health1;
     public GameObject health2;
+    public GameObject buildreminder;
     private Color c_b;
 
     private void Awake(){
@@ -70,6 +71,7 @@ public class MainMenu : MonoBehaviour
         wave2.SetActive(true);
         health1.SetActive(true);
         health2.SetActive(true);
+        buildreminder.SetActive(true);
     }
 
 
