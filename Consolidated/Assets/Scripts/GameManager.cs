@@ -4,6 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = System.Object;
+//using System.Random;
+
+//using System;
+
+//using System.Collections;
+//using System.Collections.Generic;
+ 
+ 
+public static class ListExtensions  {
+    public static void Shuffle<T>(this IList<T> list) {
+        System.Random rnd = new System.Random();
+        for (var i = 0; i < list.Count; i++)
+            list.Swap(i, rnd.Next(i, list.Count));
+    }
+ 
+    public static void Swap<T>(this IList<T> list, int i, int j) {
+        var temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+    }
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -25,17 +46,17 @@ public class GameManager : MonoBehaviour
     {
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
-        timer = 1;
+        timer = 64;
         // 64
         clock = 300;
         day = 0;
         spawners = GameObject.FindObjectsOfType<Spawner>();
-        activespawners = 2;
+        activespawners = 3;
         //spawnerscript = spawner.GetComponent<Spawner>();
     }
 
     public void ExploreUp(){
-        activespawners = 6;
+        activespawners = 7;
         CameraController cam = FindObjectOfType<CameraController>();
         if (cam.exploration == 0){
             cam.exploration = 1;
@@ -62,6 +83,7 @@ public class GameManager : MonoBehaviour
                 //print("here1");
                 state = 1;
                 timer = 48;
+                spawners.Shuffle();
                 for (int i = 0; i < activespawners; i++){
                     Spawner tmp1 = spawners[i];
                     tmp1.state = 1;
