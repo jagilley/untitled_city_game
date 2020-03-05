@@ -20,10 +20,23 @@ public class TurrPlacer : MonoBehaviour
     public GameObject turretshop;
     public TurretShop tss;
     private nogold ng;
+    public GameObject group1;
+    public int g1s;
+    public GameObject group2;
+    public int g2s;
+    public GameObject group3;
+    public int g3s;
+    private int group;
+    private GraphicRaycaster graycast;
+    PointerEventData ped;
+    EventSystem mes;
 
     // Start is called before the first frame update
     void Start()
     {
+        group = 0;
+        graycast = GetComponent<GraphicRaycaster>();
+        mes = GetComponent<EventSystem>();
         //initialize literally everything
         //gold manager
         gold = GameObject.FindObjectOfType<GoldManager>();
@@ -142,12 +155,41 @@ public class TurrPlacer : MonoBehaviour
         }
     }
 
+    void CheckMouseHit(Ray ray, RaycastHit hit, int group){
+        print("hi2");
+        if (hit.transform.gameObject == group1){
+            print("hi3");
+            group = 1;
+        }
+        if (hit.transform.gameObject == group2){
+            group = 2;
+        }
+        if (hit.transform.gameObject == group3){
+            group = 3;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        /*g1s = group1.GetComponent<MouseEnterStore>().state;
+        g2s = group2.GetComponent<MouseEnterStore>().state;
+        g3s = group3.GetComponent<MouseEnterStore>().state;*/
 
         if (awake == true)
         {
+
+            /*RaycastHit hit;
+            Ray ray;
+            if (Input.GetMouseButtonDown(0)){
+                print("hi");
+                ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit)){
+                    CheckMouseHit(ray, hit, group);
+                }
+                
+            }*/
+
             if (Input.GetKeyDown(KeyCode.Escape)){
                 awake = false;
                 blocker.SetActive(false);
@@ -172,7 +214,7 @@ public class TurrPlacer : MonoBehaviour
                     Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
                     Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
                     // press 1 key to spawn a passive building
-                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1))
                     {
                         tss.GetComponent<CanvasGroup>().alpha = 1;
                         GameObject hello = GameObject.Instantiate(turr_pf1,currpos, Quaternion.identity, bh_transform);
@@ -182,7 +224,7 @@ public class TurrPlacer : MonoBehaviour
                         newmove = g.transform.position;
                         state = 1;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha2))
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1))
                     {
                         if (tss.missile){
                             tss.GetComponent<CanvasGroup>().alpha = 1;
@@ -193,7 +235,7 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3))
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1))
                     {
                         if (tss.slow){
                             tss.GetComponent<CanvasGroup>().alpha = 1;
@@ -237,8 +279,9 @@ public class TurrPlacer : MonoBehaviour
                 // if we are currently in state 1 and select a different tower
                 if (state == 1){
 
-                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
                         if (tss.missile){
+                            group1.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
                             tss.second.GetComponent<CanvasGroup>().alpha = 1;*/
                             GameObject.Destroy(go);
@@ -249,8 +292,9 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
                         if (tss.slow){
+                            group1.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
                             tss.third.GetComponent<CanvasGroup>().alpha = 1;*/
                             GameObject.Destroy(go);
@@ -264,7 +308,8 @@ public class TurrPlacer : MonoBehaviour
                 }
                 // if we are currently in state 2 and select a different tower
                 if (state == 2){
-                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ){
+                        group2.GetComponent<MouseEnterStore>().state = 0;
                         /*tss.second.GetComponent<CanvasGroup>().alpha = 0;
                         tss.first.GetComponent<CanvasGroup>().alpha = 1;*/
                         GameObject.Destroy(go);
@@ -275,8 +320,9 @@ public class TurrPlacer : MonoBehaviour
                         newmove = g.transform.position;
                         state = 1;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
                         if (tss.slow){
+                            group2.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
                             tss.second.GetComponent<CanvasGroup>().alpha = 0;*/
                             GameObject.Destroy(go);
@@ -290,8 +336,9 @@ public class TurrPlacer : MonoBehaviour
                 }
                 // if we are currently in state 3 and select a different tower
                 if (state == 3){
-                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
                         if (tss.missile){
+                            group3.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.second.GetComponent<CanvasGroup>().alpha = 1;
                             tss.third.GetComponent<CanvasGroup>().alpha = 0;*/
                             GameObject.Destroy(go);
@@ -302,7 +349,8 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                    if (Input.GetKeyDown(KeyCode.Alpha1)|| (g1s == 1)){
+                        group3.GetComponent<MouseEnterStore>().state = 0;
                         /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
                         tss.first.GetComponent<CanvasGroup>().alpha = 0;*/
                         GameObject.Destroy(go);
@@ -326,6 +374,9 @@ public class TurrPlacer : MonoBehaviour
                         /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
                         tss.second.GetComponent<CanvasGroup>().alpha = 0;
                         tss.third.GetComponent<CanvasGroup>().alpha = 0;*/
+                        group1.GetComponent<MouseEnterStore>().state = 0;
+                        group2.GetComponent<MouseEnterStore>().state = 0;
+                        group3.GetComponent<MouseEnterStore>().state = 0;
                         turretshop.SetActive(false);
                         Occupy(grid_pos);
                         state = 0;

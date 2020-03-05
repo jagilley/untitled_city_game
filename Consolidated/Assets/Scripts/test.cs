@@ -24,10 +24,22 @@ public class test : MonoBehaviour
     public GameObject passiveshop;
     public TurretShop turrshop;
     private nogold ng;
+    public GameObject group1;
+    public GameObject group2;
+    public GameObject group3;
+    public GameObject group4;
+    public int g1s;
+    public int g2s;
+    public int g3s;
+    public int g4s;
 
     // Start is called before the first frame update
     void Start()
     {
+        g1s = 0;
+        g2s = 0;
+        g3s = 0;
+        g4s = 0;
         //initialize literally everything        
         highlight = Resources.Load("Outline", typeof(Material)) as Material;
 
@@ -155,7 +167,7 @@ public class test : MonoBehaviour
     }
 
     void switch1(GameObject go, Vector3 currpos){
-        if (gold.balance > gold.build_cost){
+        if (gold.balance >= gold.build_cost){
             GameObject.Destroy(go);
             GameObject hello = GameObject.Instantiate(building_pf,currpos,Quaternion.identity, bh_transform);
             hello.AddComponent<AudioSource>();
@@ -167,7 +179,7 @@ public class test : MonoBehaviour
         }
     }
     void switch2(GameObject go, Vector3 currpos){
-        if (gold.balance > gold.explore_cost){
+        if (gold.balance >= gold.explore_cost){
             GameObject.Destroy(go);
             GameObject hello = GameObject.Instantiate(explore_pf,currpos,Quaternion.identity, bh_transform);
             hello.AddComponent<AudioSource>();
@@ -180,7 +192,7 @@ public class test : MonoBehaviour
         }
     }
     void switch3(GameObject go, Vector3 currpos){
-        if (gold.balance > gold.research_cost){
+        if (gold.balance >= gold.research_cost){
             GameObject.Destroy(go);
             GameObject hello = GameObject.Instantiate(missile_pf,currpos,Quaternion.identity, bh_transform);
             hello.AddComponent<AudioSource>();
@@ -192,7 +204,7 @@ public class test : MonoBehaviour
         }
     }
     void switch4(GameObject go, Vector3 currpos){
-        if (gold.balance > gold.research_cost){
+        if (gold.balance >= gold.research_cost){
             GameObject.Destroy(go);
             GameObject hello = GameObject.Instantiate(slow_pf,currpos,Quaternion.identity, bh_transform);
             hello.AddComponent<AudioSource>();
@@ -211,6 +223,10 @@ public class test : MonoBehaviour
 
         if (awake == true)
         {
+            /*g1s = group1.GetComponent<MouseEnterStore>().state;
+            g2s = group2.GetComponent<MouseEnterStore>().state;
+            g3s = group3.GetComponent<MouseEnterStore>().state;
+            g4s = group4.GetComponent<MouseEnterStore>().state;*/
             blocker.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Escape)){
                 awake = false;
@@ -223,8 +239,8 @@ public class test : MonoBehaviour
             if (state == 0)
             {
                 // press 1 key to spawn a passive building
-                if (Input.GetKeyDown(KeyCode.Alpha1)) {
-                    if (gold.balance > gold.build_cost)
+                if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ) {
+                    if (gold.balance >= gold.build_cost)
                     {
                         Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
@@ -242,8 +258,8 @@ public class test : MonoBehaviour
                         ng.Fade();
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Alpha2)) {
-                    if (gold.balance > gold.explore_cost)
+                if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ) {
+                    if (gold.balance >= gold.explore_cost)
                     {
                         Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
@@ -261,8 +277,8 @@ public class test : MonoBehaviour
                         ng.Fade();
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Alpha3)) {
-                    if (gold.balance > gold.research_cost)
+                if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ) {
+                    if (gold.balance >= gold.research_cost)
                     {
                         Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
@@ -281,8 +297,8 @@ public class test : MonoBehaviour
                         ng.Fade();
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.Alpha4)) {
-                    if (gold.balance > gold.research_cost)
+                if (Input.GetKeyDown(KeyCode.Alpha4) || (g4s == 1) ) {
+                    if (gold.balance >= gold.research_cost)
                     {
                         Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
@@ -325,50 +341,62 @@ public class test : MonoBehaviour
                 Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
 
                 if (state == 1){
-                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
                         switch2(go, currpos);
+                        group1.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
                         switch3(go, currpos);
+                        group1.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                    if (Input.GetKeyDown(KeyCode.Alpha4) || (g4s == 1) ){
                         switch4(go, currpos);
+                        group1.GetComponent<MouseEnterStore>().state = 0;
                     }
                 }
 
                 if (state == 2){
-                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ){
                         switch1(go, currpos);
+                        group2.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
                         switch3(go, currpos);
+                        group2.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                    if (Input.GetKeyDown(KeyCode.Alpha4) || (g4s == 1) ){
                         switch4(go, currpos);
+                        group2.GetComponent<MouseEnterStore>().state = 0;
                     }
                 }
 
                 if (state == 3){
-                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ){
                         switch1(go, currpos);
+                        group3.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
                         switch2(go, currpos);
+                        group3.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha4)){
+                    if (Input.GetKeyDown(KeyCode.Alpha4) || (g4s == 1) ){
                         switch4(go, currpos);
+                        group3.GetComponent<MouseEnterStore>().state = 0;
                     }
                 }
 
                 if (state == 4){
-                    if (Input.GetKeyDown(KeyCode.Alpha1)){
+                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ){
                         switch1(go, currpos);
+                        group4.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha2)){
+                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
                         switch2(go, currpos);
+                        group4.GetComponent<MouseEnterStore>().state = 0;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3)){
+                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
                         switch3(go, currpos);
+                        group4.GetComponent<MouseEnterStore>().state = 0;
                     }
                 }
 
@@ -418,6 +446,10 @@ public class test : MonoBehaviour
                             gold.balance -= gold.research_cost;
                         }
 
+                        group1.GetComponent<MouseEnterStore>().state = 0;
+                        group2.GetComponent<MouseEnterStore>().state = 0;
+                        group3.GetComponent<MouseEnterStore>().state = 0;
+                        group4.GetComponent<MouseEnterStore>().state = 0;
                         state = 0;
                         awake = false;
                         go.GetComponent<Building>().alive = true;

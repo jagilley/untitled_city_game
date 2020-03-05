@@ -26,17 +26,17 @@ public class TurretShop : MonoBehaviour
     {
     
         if (!slow){
-            third.GetComponent<CanvasGroup>().alpha = 0;
+            third.SetActive(false);
         }
         else {
-            third.GetComponent<CanvasGroup>().alpha = 1;
+            third.SetActive(true);
         }
         
         if (!missile){
-            second.GetComponent<CanvasGroup>().alpha = 0;
+            second.SetActive(false);
         }
         else {
-            second.GetComponent<CanvasGroup>().alpha = 1;
+            second.SetActive(true);
         }
 
         

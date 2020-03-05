@@ -33,6 +33,36 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y > 40f){
+            Vector3 temp = transform.position;
+            temp.y = 40f;
+            transform.position = temp;
+        }
+
+        if (transform.position.z > 40f){
+            Vector3 temp = transform.position;
+            temp.z = 40f;
+            transform.position = temp;
+        }
+
+        if (transform.position.x > 40f){
+            Vector3 temp = transform.position;
+            temp.x = 40f;
+            transform.position = temp;
+        }
+
+        if (transform.position.x < -40f){
+            Vector3 temp = transform.position;
+            temp.x = -40f;
+            transform.position = temp;
+        }
+        
+        if (transform.position.z < -40f){
+            Vector3 temp = transform.position;
+            temp.z = -40f;
+            transform.position = temp;
+        }
+
         if (transform.position.y < 12f){
             Vector3 temp = transform.position;
             temp.y = 12f;
@@ -72,8 +102,14 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) {
             transform.position = transform.position - moveSpeed * new Vector3(1,0,0);
         }
-        if (Input.GetKey(KeyCode.Q)) {
+        if (Input.GetKey(KeyCode.Q) ) {
             transform.position = transform.position + moveSpeed * new Vector3(0,1,0);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+            transform.position = transform.position + moveSpeed * new Vector3(0,5,0);
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) {
+            transform.position = transform.position - moveSpeed * new Vector3(0,5,0);
         }
         if (Input.GetKey(KeyCode.E)) {
             transform.position = transform.position - moveSpeed * new Vector3(0,1,0);
