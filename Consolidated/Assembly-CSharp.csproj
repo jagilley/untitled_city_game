@@ -89,6 +89,7 @@
      <Compile Include="Assets\Scripts\cylinder.cs" />
      <Compile Include="Assets\Scripts\door.cs" />
      <Compile Include="Assets\Scripts\health.cs" />
+     <Compile Include="Assets\Scripts\hpbar.cs" />
      <Compile Include="Assets\Scripts\nogold.cs" />
      <Compile Include="Assets\Scripts\test.cs" />
      <Compile Include="Assets\Scripts\ud_holder.cs" />
