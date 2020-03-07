@@ -77,12 +77,12 @@ public class Turret : MonoBehaviour
     {
         if (gameObject.tag == "Missile")
         {
-            bulletDamage = values.ReturnMissileLength() * 5 + 15;
+            bulletDamage = values.ReturnMissileLength() * 5 + 35;
         }
 
         if (gameObject.tag == "Laser")
         {
-            damageOT = values.ReturnLaserLength() * 2 + 10;
+            damageOT = values.ReturnLaserLength() * 2 + 20;
         }
 
         bulletValue.damage = bulletDamage;
