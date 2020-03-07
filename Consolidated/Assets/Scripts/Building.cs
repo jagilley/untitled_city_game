@@ -128,12 +128,22 @@ public class Building : MonoBehaviour
 
     public int ReturnMissileLength()
     {
-        return missiles.Length;
+        if (missiles != null)
+        {
+            return missiles.Length;
+        }
+
+        return 0;
     }
 
     public int ReturnLaserLength()
     {
-        return lasers.Length;
+        if (lasers != null)
+        { 
+            return lasers.Length;
+        }
+
+        return 0;
     }
 
     public float returnDPS()

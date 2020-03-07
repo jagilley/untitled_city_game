@@ -78,8 +78,14 @@ MonoBehaviour:
     type: 3}
   turr_pf2: {fileID: 8994029485045205224, guid: 53f690fe3a6bd1746ab2520e8b4be667,
     type: 3}
-  turr_pf3: {fileID: 6684148854221421545, guid: 815abd76f03f60a438b9be1ea683a984,
+  turr_pf3: {fileID: 2101024787615098811, guid: da57d163ddb09e34caee324c125cf3f0,
     type: 3}
   blocker: {fileID: 0}
   turretshop: {fileID: 0}
   tss: {fileID: 0}
+  group1: {fileID: 0}
+  g1s: 0
+  group2: {fileID: 0}
+  g2s: 0
+  group3: {fileID: 0}
+  g3s: 0
