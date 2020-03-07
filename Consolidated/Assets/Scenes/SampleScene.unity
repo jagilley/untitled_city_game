@@ -867,7 +867,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &122584049 stripped
 GameObject:
@@ -2370,7 +2370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &453847650
 GameObject:
@@ -2948,7 +2948,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561419693
 GameObject:
@@ -3149,7 +3149,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!224 &573867783 stripped
 RectTransform:
@@ -3330,7 +3330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 484086, guid: e54840c748752784da779489681b4ac0, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 484086, guid: e54840c748752784da779489681b4ac0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3698,7 +3698,7 @@ Transform:
   - {fileID: 1001847254}
   - {fileID: 1521393310}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752930333 stripped
 GameObject:
@@ -4216,6 +4216,23 @@ PrefabInstance:
       propertyPath: group3
       value: 
       objectReference: {fileID: 373371753}
+    - target: {fileID: 6981060608694958463, guid: 7b87c3fae875ea14089fb5288d2cdb61,
+        type: 3}
+      propertyPath: turr_pf2
+      value: 
+      objectReference: {fileID: 1000010346017410, guid: 28886474c13dfff4cb183350df126081,
+        type: 3}
+    - target: {fileID: 6981060608694958463, guid: 7b87c3fae875ea14089fb5288d2cdb61,
+        type: 3}
+      propertyPath: turr_pf3
+      value: 
+      objectReference: {fileID: 2101024787615098811, guid: da57d163ddb09e34caee324c125cf3f0,
+        type: 3}
+    - target: {fileID: 6981060608694958463, guid: 7b87c3fae875ea14089fb5288d2cdb61,
+        type: 3}
+      propertyPath: turr_pf1
+      value: 
+      objectReference: {fileID: 174700, guid: 64f2ae8c83ee6bb49a47a2d3f43d307e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b87c3fae875ea14089fb5288d2cdb61, type: 3}
 --- !u!1001 &840911712
