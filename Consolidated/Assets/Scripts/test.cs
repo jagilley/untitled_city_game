@@ -56,10 +56,10 @@ public class test : MonoBehaviour
         state = 0;
         awake = false;
         //passive building prefab and holder 
-        building_pf = Resources.Load("Building", typeof(GameObject)) as GameObject;
-        explore_pf = Resources.Load("Explorer", typeof(GameObject)) as GameObject;
-        missile_pf = Resources.Load("missileresearch", typeof(GameObject)) as GameObject;
-        slow_pf = Resources.Load("slowresearch", typeof(GameObject)) as GameObject;
+        building_pf = Resources.Load("goldbuildingobj", typeof(GameObject)) as GameObject;
+        explore_pf = Resources.Load("Exploreobj", typeof(GameObject)) as GameObject;
+        missile_pf = Resources.Load("missileresearchobj", typeof(GameObject)) as GameObject;
+        slow_pf = Resources.Load("laserresearchobj", typeof(GameObject)) as GameObject;
         bh_transform = FindObjectOfType<Building_Holder>().gameObject.transform;
         cam = GameObject.FindObjectOfType<CameraController>().gameObject;
         //blocker = GameObject.FindObjectOfType<Image>().gameObject;
