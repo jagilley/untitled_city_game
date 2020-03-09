@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating ("SpawnNext", 10f, Random.Range(1f, 2f));
+        InvokeRepeating ("SpawnNext", 10f, Random.Range(1.5f, 3f));
     }
 
     void Awake(){

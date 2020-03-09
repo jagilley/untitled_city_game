@@ -67,13 +67,13 @@ public class Building : MonoBehaviour
                 }
                 else if (gameObject.tag == "missileresearch")
                 {
-                    StatSelector.SetNumber(ReturnMissileLength());
+                    StatSelector.SetNumber(ReturnMissileLength() * 5);
                     StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
                     StatSelector.SetPrice(g.research_cost / 2);
                 }
                 else if (gameObject.tag == "slowresearch")
                 {
-                    StatSelector.SetNumber(ReturnLaserLength());
+                    StatSelector.SetNumber(ReturnLaserLength() * 2);
                     StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
                     StatSelector.SetPrice(g.research_cost / 2);
                 }
