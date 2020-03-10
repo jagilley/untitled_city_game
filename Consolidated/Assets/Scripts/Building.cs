@@ -18,6 +18,7 @@ public class Building : MonoBehaviour
     private GameObject[] lightguns;
     private GameObject[] missiles;
     private GoldManager g;
+    public Sprite sprite;
 
     // Start is called before the first frame update
     void Start()
@@ -62,25 +63,25 @@ public class Building : MonoBehaviour
                 if (gameObject.tag == "GoldMine")
                 {
                     StatSelector.SetGold(10);
-                    StatSelector.SetSprite(Color.white);
+                    StatSelector.SetSprite(sprite);
                     StatSelector.SetPrice(g.build_cost / 2);
                 }
                 else if (gameObject.tag == "missileresearch")
                 {
                     StatSelector.SetNumber(ReturnMissileLength() * 5);
-                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                    StatSelector.SetSprite(sprite);
                     StatSelector.SetPrice(g.research_cost / 2);
                 }
                 else if (gameObject.tag == "slowresearch")
                 {
                     StatSelector.SetNumber(ReturnLaserLength() * 2);
-                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                    StatSelector.SetSprite(sprite);
                     StatSelector.SetPrice(g.research_cost / 2);
                 }
                 else if (gameObject.tag == "Explorer")
                 {
                     StatSelector.ExploreInfo();
-                    StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+                    StatSelector.SetSprite(sprite);
                 }
                 else
                 {
@@ -148,7 +149,7 @@ public class Building : MonoBehaviour
 
     public float returnDPS()
     {
-        StatSelector.SetSprite(gameObject.GetComponent<Renderer>().material.color);
+        StatSelector.SetSprite(sprite);
         if (gameObject.tag == "LightGun")
         {
             return gameObject.GetComponent<Turret>().returnDamage();

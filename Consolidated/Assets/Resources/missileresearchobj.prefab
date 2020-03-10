@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3089535964751616065}
   - component: {fileID: 8133897620011913686}
   m_Layer: 0
-  m_Name: laserresearchobj (1)
+  m_Name: missileresearchobj
   m_TagString: missileresearch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   selfnum: 0
   parent_grid: {fileID: 0}
   normal: {fileID: 2100000, guid: 2fc3f5ed8d531a14bad565e3e40c7131, type: 2}
+  sprite: {fileID: 21300000, guid: d4cdbddedd96e6c45ad82c841b388ecc, type: 3}
 --- !u!1001 &1230934800885405718
 PrefabInstance:
   m_ObjectHideFlags: 0

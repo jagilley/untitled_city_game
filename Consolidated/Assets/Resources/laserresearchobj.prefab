@@ -103,6 +103,7 @@ MonoBehaviour:
   selfnum: 0
   parent_grid: {fileID: 0}
   normal: {fileID: 2100000, guid: 8165789fe91618046aca1997be16d671, type: 2}
+  sprite: {fileID: 21300000, guid: 80664c9aedf06b74da1ab771a9bf2974, type: 3}
 --- !u!1001 &598249913793046560
 PrefabInstance:
   m_ObjectHideFlags: 0
