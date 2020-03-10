@@ -38,7 +38,7 @@ public class Turret : MonoBehaviour
         awake = false;
         if (gameObject.tag == "Missile")
         {
-            bulletDamage = 35f;
+            bulletDamage = 15f;
         }
 
         bulletValue = bulletPrefab.GetComponent<Bullet>();
@@ -77,7 +77,7 @@ public class Turret : MonoBehaviour
     {
         if (gameObject.tag == "Missile")
         {
-            bulletDamage = values.ReturnMissileLength() * 5 + 35;
+            bulletDamage = values.ReturnMissileLength() * 5 + 15;
         }
 
         if (gameObject.tag == "Laser")

@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
-        timer = 1;
+        timer = 64;
         // 64
         clock = 300;
         day = 0;
