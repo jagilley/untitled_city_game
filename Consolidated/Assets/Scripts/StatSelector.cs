@@ -16,7 +16,7 @@ public class StatSelector : MonoBehaviour
     private static string PS;
     private static string SC;
     public Image buildSprite;
-    private static Color matColor;
+    private static Sprite TurrSprite;
     public Image[] images;
 
     void Start()
@@ -32,7 +32,7 @@ public class StatSelector : MonoBehaviour
         textArr[0].text = buildName;
         textArr[1].text = PS;
         textArr[2].text = SC;
-        buildSprite.color = matColor;
+        buildSprite.sprite = TurrSprite;
     }
 
     public static void SetName(string newName)
@@ -66,8 +66,8 @@ public class StatSelector : MonoBehaviour
         SC = "0 Gold on Sell";
     }
 
-    public static void SetSprite(Color color)
+    public static void SetSprite(Sprite sprite)
     {
-        matColor = color;
+        TurrSprite = sprite;
     }
 }

@@ -258,7 +258,8 @@ MonoBehaviour:
   alive: 0
   selfnum: 0
   parent_grid: {fileID: 0}
-  normal: {fileID: 0}
+  normal: {fileID: 2100000, guid: 585b1286c69f1524fa9e6c9e1b7170dd, type: 2}
+  sprite: {fileID: 21300000, guid: 42ef31f4db292e6409e47ca5edb223e3, type: 3}
 --- !u!65 &6508020163187321729
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d2e2fc6979ea3844b8dcc9eaa1ae782, type: 2}
+  - {fileID: 2100000, guid: 2747b0048391dfa48a58c0280319ab9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   selfnum: 0
   parent_grid: {fileID: 0}
   normal: {fileID: 2100000, guid: 8165789fe91618046aca1997be16d671, type: 2}
+  sprite: {fileID: 21300000, guid: c287855d3a53cf149bc809906bd274a0, type: 3}
 --- !u!1001 &598249913793046560
 PrefabInstance:
   m_ObjectHideFlags: 0
