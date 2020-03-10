@@ -171,7 +171,8 @@ MonoBehaviour:
   alive: 0
   selfnum: 0
   parent_grid: {fileID: 0}
-  normal: {fileID: 2100000, guid: 05c3b35dce48bfb44a9ce93ae526df18, type: 2}
+  normal: {fileID: 2100000, guid: 2747b0048391dfa48a58c0280319ab9c, type: 2}
+  sprite: {fileID: 21300000, guid: 3615ce66553719a4381cb914669bae9a, type: 3}
 --- !u!120 &3727990397249714704
 LineRenderer:
   m_ObjectHideFlags: 0
