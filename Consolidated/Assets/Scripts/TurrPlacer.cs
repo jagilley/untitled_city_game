@@ -220,9 +220,9 @@ public class TurrPlacer : MonoBehaviour
             }
         }
         
-        /*g1s = group1.GetComponent<MouseEnterStore>().state;
+        g1s = group1.GetComponent<MouseEnterStore>().state;
         g2s = group2.GetComponent<MouseEnterStore>().state;
-        g3s = group3.GetComponent<MouseEnterStore>().state;*/
+        g3s = group3.GetComponent<MouseEnterStore>().state;
 
         if (awake == true)
         {
@@ -420,7 +420,7 @@ public class TurrPlacer : MonoBehaviour
 
                 //go.transform.position = Gridize(new Vector3(mp.x, 0, mp.z));
                 go.transform.position = currpos;
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) || (group1.GetComponent<MouseEnterStore>().clicked == 1) || (group1.GetComponent<MouseEnterStore>().clicked == 1) || (group1.GetComponent<MouseEnterStore>().clicked == 1))
                 {
                     Vector3 grid_pos = go.transform.position - g.transform.position;
 
