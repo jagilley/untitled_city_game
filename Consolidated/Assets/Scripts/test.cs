@@ -6,6 +6,15 @@ using UnityEngine.UI;
 
 public class test : MonoBehaviour
 {
+    public Button b1;
+    public Button b2;
+    public Button b3;
+    public Button b4; 
+    public Button b5; 
+
+    public Material cubehighlight;
+    public Material cubenolight;
+    private Vector3 currpos;
     public int state;
     private GridManager g;
     public bool awake;
@@ -36,6 +45,9 @@ public class test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cubehighlight = Resources.Load("Outline", typeof(Material)) as Material;
+        cubenolight = Resources.Load("Normal", typeof(Material)) as Material;
+
         g1s = 0;
         g2s = 0;
         g3s = 0;
@@ -147,13 +159,25 @@ public class test : MonoBehaviour
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                awake = true;
-                passiveshop.SetActive(true);
-                GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
-                Color c = Color.white;
-                c.a = .2f;
-                highlighter.GetComponent<Renderer>().material.color = c;
-                print("woke up");
+                Vector3 mousepos = Input.mousePosition;
+                mousepos.z = cam.transform.position.z;
+                Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                Vector3 grid_pos = currpos - g.transform.position;
+                if (!Occupied(grid_pos)){
+                    awake = true;
+                    passiveshop.SetActive(true);
+
+                    GameObject currcube = g.gameObject.transform.GetChild((int)grid_pos.x * g.h + (int)grid_pos.z).gameObject;
+                    currcube.GetComponent<Renderer>().material = cubehighlight;
+                    currcube.GetComponent<Renderer>().material.color = Color.green;
+                    
+                    GameObject highlighter = g.gameObject.transform.GetChild(g.gameObject.transform.childCount - 1).gameObject;
+                    Color c = Color.white;
+                    c.a = .2f;
+                    highlighter.GetComponent<Renderer>().material.color = c;
+                    print("woke up");
+                }
             }
         }
         else
@@ -235,6 +259,10 @@ public class test : MonoBehaviour
                 Color c = Color.white;
                 c.a = 0f;
                 highlighter.GetComponent<Renderer>().material.color = c;
+                Vector3 grid_pos = currpos - g.transform.position;
+                GameObject currcube = g.gameObject.transform.GetChild((int)grid_pos.x * g.h + (int)grid_pos.z).gameObject;
+                currcube.GetComponent<Renderer>().material = cubenolight;
+                currcube.GetComponent<Renderer>().material.color = Color.green;
             }
             if (state == 0)
             {
@@ -242,10 +270,10 @@ public class test : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ) {
                     if (gold.balance >= gold.build_cost)
                     {
-                        Vector3 mousepos = Input.mousePosition;
+                        /*Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
                         Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
-                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
                         
                         GameObject hello = GameObject.Instantiate(building_pf,currpos, Quaternion.identity, bh_transform);
                         
@@ -261,10 +289,10 @@ public class test : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ) {
                     if (gold.balance >= gold.explore_cost)
                     {
-                        Vector3 mousepos = Input.mousePosition;
+                        /*Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
                         Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
-                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
                                     
                         GameObject hello = GameObject.Instantiate(explore_pf,currpos, Quaternion.identity, bh_transform);
                         
@@ -280,10 +308,10 @@ public class test : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ) {
                     if (gold.balance >= gold.research_cost)
                     {
-                        Vector3 mousepos = Input.mousePosition;
+                        /*Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
                         Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
-                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
                                     
                         GameObject hello = GameObject.Instantiate(missile_pf,currpos, Quaternion.identity, bh_transform);
                         
@@ -300,10 +328,10 @@ public class test : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha4) || (g4s == 1) ) {
                     if (gold.balance >= gold.research_cost)
                     {
-                        Vector3 mousepos = Input.mousePosition;
+                        /*Vector3 mousepos = Input.mousePosition;
                         mousepos.z = cam.transform.position.z;
                         Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
-                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                        Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
                                     
                         GameObject hello = GameObject.Instantiate(slow_pf,currpos, Quaternion.identity, bh_transform);
                         
@@ -323,9 +351,9 @@ public class test : MonoBehaviour
 
                 GameObject go = GameObject.FindObjectOfType<AudioSource>().gameObject;
                 // code for moving with mouse
-                Vector3 mousepos = Input.mousePosition;
+                /*Vector3 mousepos = Input.mousePosition;
                 mousepos.z = cam.transform.position.z;
-                Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
+                Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);*/
 
                 if (Input.GetKeyDown(KeyCode.Escape)){
                     
@@ -338,7 +366,7 @@ public class test : MonoBehaviour
                     highlighter.GetComponent<Renderer>().material.color = c;
                     Object.Destroy(go);
                 }
-                Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));
+                /*Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
 
                 if (state == 1){
                     if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
@@ -417,7 +445,7 @@ public class test : MonoBehaviour
                 newmove = Gridize(mp);
 */
 
-                go.transform.position = Gridize(new Vector3(mp.x, 0, mp.z));
+                go.transform.position = currpos;
                 //if (Input.GetKeyDown(KeyCode.Space)){
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -445,6 +473,10 @@ public class test : MonoBehaviour
                             turrshop.slow = true;
                             gold.balance -= gold.research_cost;
                         }
+
+                        GameObject currcube = g.gameObject.transform.GetChild((int)grid_pos.x * g.h + (int)grid_pos.z).gameObject;
+                        currcube.GetComponent<Renderer>().material = cubenolight;
+                        currcube.GetComponent<Renderer>().material.color = Color.green;
 
                         group1.GetComponent<MouseEnterStore>().state = 0;
                         group2.GetComponent<MouseEnterStore>().state = 0;

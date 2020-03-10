@@ -17,6 +17,7 @@ TagManager:
   - slowresearch
   - missileresearch
   - cylinder
+  - button
   layers:
   - Default
   - TransparentFX

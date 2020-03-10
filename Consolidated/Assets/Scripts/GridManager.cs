@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     private float size = .5f;
     public int[] taken;
     private Material transparent;
+    public int build;
 
     void Start()
     {
@@ -22,6 +23,9 @@ public class GridManager : MonoBehaviour
             for (int j = 0; j < h; j++)
             {
                 GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                if (build == 1){
+                    temp.GetComponent<Renderer>().material.color = Color.green;
+                }
                 temp.transform.parent = gameObject.transform;
                 temp.transform.position = new Vector3(i, 0, j) + gameObject.transform.position;
                 temp.transform.localScale = new Vector3(size, size, size);
