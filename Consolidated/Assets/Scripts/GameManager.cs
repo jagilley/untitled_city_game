@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     private int day;
     public GameObject daytimer;
     private Spawner[] spawners;
+    //private Spawner[] startspawners;
     public int activespawners;
     public GameObject Over;
     public GoldManager goldManager;
@@ -46,17 +47,18 @@ public class GameManager : MonoBehaviour
     {
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
-        timer = 1;
+        timer = 60;
         // 64
         clock = 300;
         day = 0;
         spawners = GameObject.FindObjectsOfType<Spawner>();
+        //startspawners = GameObject.FindGameObjectsWithTag("startspawn");
         activespawners = 3;
         //spawnerscript = spawner.GetComponent<Spawner>();
     }
 
     public void ExploreUp(){
-        activespawners = 7;
+        activespawners = 9;
         CameraController cam = FindObjectOfType<CameraController>();
         if (cam.exploration == 0){
             cam.exploration = 1;
@@ -80,13 +82,23 @@ public class GameManager : MonoBehaviour
         }
         if (timer < 0){
             if (state == 0){
-                //print("here1");
-                state = 1;
-                timer = 48;
-                spawners.Shuffle();
-                for (int i = 0; i < activespawners; i++){
-                    Spawner tmp1 = spawners[i];
-                    tmp1.state = 1;
+                if (activespawners == 9){
+                    //print("here1");
+                    state = 1;
+                    timer = 48;
+                    //spawners.Shuffle();
+                    for (int i = 0; i < activespawners; i++){
+                        Spawner tmp1 = spawners[i];
+                        tmp1.state = 1;
+                    }
+                }
+                else {
+                    state = 1;
+                    timer = 48;
+                    for (int i = 0; i < 4; i++){
+                        Spawner tmp1 = spawners[i];
+                        tmp1.state = 1;
+                    }
                 }
                 
             }

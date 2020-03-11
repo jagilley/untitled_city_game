@@ -19,6 +19,7 @@ TagManager:
   - cylinder
   - button
   - lightresearch
+  - startspawn
   layers:
   - Default
   - TransparentFX
