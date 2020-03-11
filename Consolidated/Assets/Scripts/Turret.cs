@@ -23,7 +23,7 @@ public class Turret : MonoBehaviour
     public bool usingLaser = false;
     public float damageOT = 10f;
     public float sellPrice = 50f;
-    public float bulletDamage = 15f;
+    public float bulletDamage = 30f;
     private Bullet bulletValue;
     private Building values;
 
@@ -34,14 +34,14 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
-        lineRenderer.enabled = false;
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        awake = false;
-        if (gameObject.tag == "Missile")
+        if (usingLaser)
         {
-            bulletDamage = 15f;
+            lineRenderer.enabled = false;
         }
 
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        awake = false;
+        bulletDamage = 30;
         bulletValue = bulletPrefab.GetComponent<Bullet>();
         bulletValue.damage = bulletDamage;
         values = gameObject.GetComponent<Building>();
@@ -78,7 +78,11 @@ public class Turret : MonoBehaviour
     {
         if (gameObject.tag == "Missile")
         {
-            bulletDamage = values.ReturnMissileLength() * 5 + 15;
+            bulletDamage = values.ReturnMissileLength() * 5 + 35;
+        }
+        if (gameObject.tag == "LightGun")
+        {
+            bulletDamage = values.ReturnLightLength() * 5 + 30;
         }
 
         if (gameObject.tag == "Laser")

@@ -18,6 +18,7 @@ TagManager:
   - missileresearch
   - cylinder
   - button
+  - lightresearch
   layers:
   - Default
   - TransparentFX
