@@ -16,7 +16,7 @@ public class Building : MonoBehaviour
     private Renderer objectRenderer;
     private GameObject[] lasers;
     private GameObject[] lightguns;
-    private GameObject[] missiles;
+    public GameObject[] missiles;
     private GoldManager g;
     public Sprite sprite;
 
@@ -69,6 +69,12 @@ public class Building : MonoBehaviour
                 else if (gameObject.tag == "missileresearch")
                 {
                     StatSelector.SetNumber(ReturnMissileLength() * 5);
+                    StatSelector.SetSprite(sprite);
+                    StatSelector.SetPrice(g.research_cost / 2);
+                }
+                else if (gameObject.tag == "lightresearch")
+                {
+                    StatSelector.SetNumber(ReturnLightLength() * 5);
                     StatSelector.SetSprite(sprite);
                     StatSelector.SetPrice(g.research_cost / 2);
                 }
@@ -125,6 +131,17 @@ public class Building : MonoBehaviour
 
         missiles = GameObject.FindGameObjectsWithTag("missileresearch");
         lasers = GameObject.FindGameObjectsWithTag("slowresearch");
+        lightguns = GameObject.FindGameObjectsWithTag("lightresearch");
+    }
+
+    public int ReturnLightLength()
+    {
+        if (lightguns != null)
+        {
+            return lightguns.Length;
+        }
+
+        return 0;
     }
 
     public int ReturnMissileLength()

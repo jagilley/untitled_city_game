@@ -69,7 +69,7 @@ public class test : MonoBehaviour
         explore_pf = Resources.Load("Exploreobj", typeof(GameObject)) as GameObject;
         missile_pf = Resources.Load("missileresearchobj", typeof(GameObject)) as GameObject;
         slow_pf = Resources.Load("laserresearchobj", typeof(GameObject)) as GameObject;
-        single_pf = Resources.Load("laserresearchobj", typeof(GameObject)) as GameObject;
+        single_pf = Resources.Load("lightgunresearch", typeof(GameObject)) as GameObject;
         bh_transform = FindObjectOfType<Building_Holder>().gameObject.transform;
         cam = GameObject.FindObjectOfType<CameraController>().gameObject;
         //blocker = GameObject.FindObjectOfType<Image>().gameObject;
