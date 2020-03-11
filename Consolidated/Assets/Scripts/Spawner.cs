@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
             return;
         }
         else {
-            GameObject new_enemy = Instantiate(Sphere, transform.position, transform.rotation);
+            GameObject new_enemy = Instantiate(Sphere, transform.position, Quaternion.identity);
         }
     }
 

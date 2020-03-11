@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(Vector3.Distance(bg.transform.position,transform.position) <= 4)
+        if(Vector3.Distance(bg.transform.position + new Vector3(2,0,2),transform.position) <= 4)
         {
             //door_health.sizeDelta = new Vector2(door_health.sizeDelta.x-1, door_health.sizeDelta.y);
             //door_health.sizeDelta = new Vector3(door_health.sizeDelta.x-1, door_health.sizeDelta.y, door_health.sizeDelta.z);

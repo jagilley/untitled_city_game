@@ -41,13 +41,16 @@ public class GameManager : MonoBehaviour
     public int activespawners;
     public GameObject Over;
     public GoldManager goldManager;
+    public GameObject spawners1;
+    public GameObject spawners2;
+
 
     // Start is called before the first frame update
     void Start()
     {
         state = 0;
         // the first day lasts for 60 seconds (15 hours); so the game starts at 3am
-        timer = 60;
+        timer = 64;
         // 64
         clock = 300;
         day = 0;
@@ -58,7 +61,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void ExploreUp(){
-        activespawners = 9;
+        activespawners = 14;
+        spawners1.SetActive(true);
         CameraController cam = FindObjectOfType<CameraController>();
         if (cam.exploration == 0){
             cam.exploration = 1;
@@ -82,20 +86,24 @@ public class GameManager : MonoBehaviour
         }
         if (timer < 0){
             if (state == 0){
-                if (activespawners == 9){
+                if (activespawners == 14){
                     //print("here1");
                     state = 1;
                     timer = 48;
                     //spawners.Shuffle();
-                    for (int i = 0; i < activespawners; i++){
+                    for (int i = 0; i < 4; i++){
                         Spawner tmp1 = spawners[i];
                         tmp1.state = 1;
+                    }
+                    foreach (Transform child in spawners1.transform){
+                        child.GetComponent<Spawner>().state = 1;
                     }
                 }
                 else {
                     state = 1;
                     timer = 48;
-                    for (int i = 0; i < 4; i++){
+                    for (int i = 0; i < 2; i++){
+                        spawners.Shuffle();
                         Spawner tmp1 = spawners[i];
                         tmp1.state = 1;
                     }
@@ -107,9 +115,12 @@ public class GameManager : MonoBehaviour
                 //print("here2");
                 timer = 48;
                 //spawner.SetActive(false);
-                for (int i = 0; i < activespawners; i++){
+                for (int i = 0; i < 4; i++){
                     Spawner tmp1 = spawners[i];
                     tmp1.state = 0;
+                }
+                foreach (Transform child in spawners1.transform){
+                    child.GetComponent<Spawner>().state = 0;
                 }
             }
         }

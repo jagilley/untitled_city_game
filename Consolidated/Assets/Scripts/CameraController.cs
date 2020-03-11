@@ -84,9 +84,9 @@ public class CameraController : MonoBehaviour
                 temp.z = -7f;
                 transform.position = temp;
             }
-            if (transform.position.x > 15f){
+            if (transform.position.x > 12f){
                 Vector3 temp = transform.position;
-                temp.x = 15f;
+                temp.x = 12f;
                 transform.position = temp;
             }
             if (transform.position.x < -5f){
