@@ -212,13 +212,13 @@ public class TurrPlacer : MonoBehaviour
         if (results.Count > 0){
             print("hi123");
         }*/
-        RaycastHit hit;
+        /*RaycastHit hit;
         Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000f)){
             if (hit.collider.tag == "button"){
                 print("hi213");
             }
-        }
+        }*/
         
         g1s = group1.GetComponent<MouseEnterStore>().state;
         g2s = group2.GetComponent<MouseEnterStore>().state;
@@ -268,7 +268,7 @@ public class TurrPlacer : MonoBehaviour
                     Vector3 mp = GetWorldPositionOnPlane(mousepos, 0f);
                     Vector3 currpos = Gridize(new Vector3(mp.x, 0, mp.z));*/
                     // press 1 key to spawn a passive building
-                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1))
+                    if (/*Input.GetKeyDown(KeyCode.Alpha1) ||*/ (g1s == 1))
                     {
                         tss.GetComponent<CanvasGroup>().alpha = 1;
                         GameObject hello = GameObject.Instantiate(turr_pf1,currpos, Quaternion.identity, bh_transform);
@@ -278,7 +278,7 @@ public class TurrPlacer : MonoBehaviour
                         newmove = g.transform.position;
                         state = 1;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1))
+                    if (/*Input.GetKeyDown(KeyCode.Alpha2) ||*/ (g2s == 1))
                     {
                         if (tss.missile){
                             tss.GetComponent<CanvasGroup>().alpha = 1;
@@ -289,7 +289,7 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1))
+                    if (/*Input.GetKeyDown(KeyCode.Alpha3) ||*/ (g3s == 1))
                     {
                         if (tss.slow){
                             tss.GetComponent<CanvasGroup>().alpha = 1;
@@ -334,7 +334,7 @@ public class TurrPlacer : MonoBehaviour
                 // if we are currently in state 1 and select a different tower
                 if (state == 1){
 
-                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha2) ||*/ (g2s == 1) ){
                         if (tss.missile){
                             group1.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
@@ -347,7 +347,7 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha3) ||*/ (g3s == 1) ){
                         if (tss.slow){
                             group1.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.first.GetComponent<CanvasGroup>().alpha = 0;
@@ -363,7 +363,7 @@ public class TurrPlacer : MonoBehaviour
                 }
                 // if we are currently in state 2 and select a different tower
                 if (state == 2){
-                    if (Input.GetKeyDown(KeyCode.Alpha1) || (g1s == 1) ){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha1) ||*/ (g1s == 1) ){
                         group2.GetComponent<MouseEnterStore>().state = 0;
                         /*tss.second.GetComponent<CanvasGroup>().alpha = 0;
                         tss.first.GetComponent<CanvasGroup>().alpha = 1;*/
@@ -375,7 +375,7 @@ public class TurrPlacer : MonoBehaviour
                         newmove = g.transform.position;
                         state = 1;
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha3) || (g3s == 1) ){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha3) ||*/ (g3s == 1) ){
                         if (tss.slow){
                             group2.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
@@ -391,7 +391,7 @@ public class TurrPlacer : MonoBehaviour
                 }
                 // if we are currently in state 3 and select a different tower
                 if (state == 3){
-                    if (Input.GetKeyDown(KeyCode.Alpha2) || (g2s == 1) ){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha2) ||*/ (g2s == 1) ){
                         if (tss.missile){
                             group3.GetComponent<MouseEnterStore>().state = 0;
                             /*tss.second.GetComponent<CanvasGroup>().alpha = 1;
@@ -404,7 +404,7 @@ public class TurrPlacer : MonoBehaviour
                             newmove = g.transform.position;
                             state = 2;}
                     }
-                    if (Input.GetKeyDown(KeyCode.Alpha1)|| (g1s == 1)){
+                    if (/*Input.GetKeyDown(KeyCode.Alpha1)||*/ (g1s == 1)){
                         group3.GetComponent<MouseEnterStore>().state = 0;
                         /*tss.third.GetComponent<CanvasGroup>().alpha = 1;
                         tss.first.GetComponent<CanvasGroup>().alpha = 0;*/
@@ -420,7 +420,7 @@ public class TurrPlacer : MonoBehaviour
 
                 //go.transform.position = Gridize(new Vector3(mp.x, 0, mp.z));
                 go.transform.position = currpos;
-                if (Input.GetMouseButtonDown(0) || (group1.GetComponent<MouseEnterStore>().clicked == 1) || (group1.GetComponent<MouseEnterStore>().clicked == 1) || (group1.GetComponent<MouseEnterStore>().clicked == 1))
+                if (Input.GetMouseButtonDown(0) || (group1.GetComponent<MouseEnterStore>().clicked == 1) || (group2.GetComponent<MouseEnterStore>().clicked == 1) || (group3.GetComponent<MouseEnterStore>().clicked == 1))
                 {
                     Vector3 grid_pos = go.transform.position - g.transform.position;
 

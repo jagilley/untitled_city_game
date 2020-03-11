@@ -34,6 +34,7 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
+        lineRenderer.enabled = false;
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         awake = false;
         if (gameObject.tag == "Missile")

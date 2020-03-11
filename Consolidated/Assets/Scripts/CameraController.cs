@@ -63,15 +63,15 @@ public class CameraController : MonoBehaviour
             transform.position = temp;
         }
 
-        if (transform.position.y < 12f){
+        if (transform.position.y < 14f){
             Vector3 temp = transform.position;
-            temp.y = 12f;
+            temp.y = 14f;
             transform.position = temp;
         }
         if (exploration == 0){
-            if (transform.position.y > 12f){
+            if (transform.position.y > 14f){
                 Vector3 temp = transform.position;
-                temp.y = 12f;
+                temp.y = 14f;
                 transform.position = temp;
             }
             if (transform.position.z > 7f){

@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
         Vector3 startpos = Camera.transform.position;
         Vector3 endpos = startpos;
         daymanager.GetComponent<DayNightController>().daySpeedMultiplier = .25f;
-        endpos.y = 12;
+        endpos.y = 14;
         float i = 0f;
         float alpha = 1f;
         Color c = Color.white;
