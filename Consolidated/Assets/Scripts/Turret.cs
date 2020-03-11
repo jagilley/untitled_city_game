@@ -7,6 +7,7 @@ public class Turret : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    public float turnSpd;
     public Transform target;
     private Enemy targetEnemy;
     public float range = 15f;
@@ -34,6 +35,7 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
+        turnSpd = 10f;
         if (usingLaser)
         {
             lineRenderer.enabled = false;
@@ -150,7 +152,7 @@ public class Turret : MonoBehaviour
     {
         Vector3 dir = target.position - transform.position;
         Quaternion LRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = LRotation.eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(rotater.rotation, LRotation, Time.deltaTime * turnSpd).eulerAngles;
         rotater.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 

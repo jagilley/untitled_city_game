@@ -1981,7 +1981,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Explorer
 
-        1000g
+        500g
 
 
         Build this tower to unlock portions
@@ -8846,7 +8846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1284101582
 Transform:
   m_ObjectHideFlags: 0

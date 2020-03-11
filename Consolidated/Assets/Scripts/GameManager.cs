@@ -91,9 +91,8 @@ public class GameManager : MonoBehaviour
                     state = 1;
                     timer = 48;
                     //spawners.Shuffle();
-                    for (int i = 0; i < 4; i++){
-                        Spawner tmp1 = spawners[i];
-                        tmp1.state = 1;
+                    foreach (Transform child in spawners2.transform){
+                        child.GetComponent<Spawner>().state = 1;
                     }
                     foreach (Transform child in spawners1.transform){
                         child.GetComponent<Spawner>().state = 1;
@@ -102,8 +101,19 @@ public class GameManager : MonoBehaviour
                 else {
                     state = 1;
                     timer = 48;
-                    for (int i = 0; i < 2; i++){
-                        spawners.Shuffle();
+                    int spns = 1;
+                    if (day < 2){
+                        spns = 1;
+                    }
+                    else if (day < 4){
+                        spns = 2;
+                    }
+                    else{
+                        spns = 4;
+                    }
+                    spawners.Shuffle();
+                    for (int i = 0; i < spns; i++){
+                        
                         Spawner tmp1 = spawners[i];
                         tmp1.state = 1;
                     }
@@ -115,9 +125,8 @@ public class GameManager : MonoBehaviour
                 //print("here2");
                 timer = 48;
                 //spawner.SetActive(false);
-                for (int i = 0; i < 4; i++){
-                    Spawner tmp1 = spawners[i];
-                    tmp1.state = 0;
+                foreach (Transform child in spawners2.transform){
+                    child.GetComponent<Spawner>().state = 0;
                 }
                 foreach (Transform child in spawners1.transform){
                     child.GetComponent<Spawner>().state = 0;

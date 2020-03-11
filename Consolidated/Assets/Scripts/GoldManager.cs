@@ -22,7 +22,7 @@ public class GoldManager : MonoBehaviour
         gen_rate = 2;
         build_cost = 100;
         turr_cost = 50;
-        explore_cost = 1000;
+        explore_cost = 500;
         research_cost = 150;
         StartCoroutine( GoldUpdater() );
     }
