@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         //door_health = GameObject.Find("dh2");
         waypoints = GameObject.FindGameObjectsWithTag("Waypoints");
         bg = GameObject.Find("BuildGrid");
+        BuildGrid = bg.transform;
         Array.Sort(waypoints, CompareWaypoints);
         Array.Reverse(waypoints);
     }
