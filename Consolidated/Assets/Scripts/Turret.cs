@@ -87,7 +87,7 @@ public class Turret : MonoBehaviour
 
         if (gameObject.tag == "Laser")
         {
-            damageOT = values.ReturnLaserLength() * 2 + 20;
+            damageOT = values.ReturnLaserLength() * 2 + 15;
         }
 
         bulletValue.damage = bulletDamage;

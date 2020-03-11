@@ -62,7 +62,7 @@ public class Building : MonoBehaviour
                 StatSelector.SetName(gameObject.tag);
                 if (gameObject.tag == "GoldMine")
                 {
-                    StatSelector.SetGold(10);
+                    StatSelector.SetGold(2);
                     StatSelector.SetSprite(sprite);
                     StatSelector.SetPrice(g.build_cost / 2);
                 }

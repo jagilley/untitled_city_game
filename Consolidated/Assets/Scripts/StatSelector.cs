@@ -52,7 +52,7 @@ public class StatSelector : MonoBehaviour
 
     public static void SetGold(float gold)
     {
-        PS = "GG: " + gold;
+        PS = "Gold/s: " + gold;
     }
 
     public static void SetPrice(float price)
