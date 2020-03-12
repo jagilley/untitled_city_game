@@ -150,10 +150,10 @@ public class test : MonoBehaviour
     // wake up this specific grid when this grid is clicked on 
     void OnMouseDown()
     {
-        if (gold.balance < gold.build_cost){
+        /*if (gold.balance < gold.build_cost){
             ng.Fade();
-        }
-        if (awake == false && gold.balance >= gold.build_cost)
+        }*/
+        if (awake == false /*&& gold.balance >= gold.build_cost*/)
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {

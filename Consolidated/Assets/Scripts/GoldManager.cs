@@ -44,6 +44,10 @@ public class GoldManager : MonoBehaviour
     {
         balance -= upgradeC;
     }
+
+    public void subGoldBuild(){
+        gen_buildings -= 1;
+    }
 /*
     private void goldupdate(){
         balance = balance + gen_buildings * gen_rate;

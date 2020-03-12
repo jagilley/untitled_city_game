@@ -138,10 +138,10 @@ public class TurrPlacer : MonoBehaviour
     // wake up this specific grid when this grid is clicked on 
     void OnMouseDown()
     {
-        if (gold.balance < gold.turr_cost){
+        /*if (gold.balance < gold.turr_cost){
             ng.Fade();
-        }
-        if (!EventSystem.current.IsPointerOverGameObject() && gold.balance >= gold.turr_cost)
+        }*/
+        if (!EventSystem.current.IsPointerOverGameObject() /*&& gold.balance >= gold.turr_cost*/)
         {
             if (awake == false)
             {

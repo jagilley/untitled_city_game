@@ -27,6 +27,7 @@ public class Building_Holder : MonoBehaviour
         if (last.tag == "GoldMine")
         {
             g.addGold(g.build_cost);
+            g.subGoldBuild();
         }
         else if(last.tag == "slowresearch" || last.tag == "missileresearch")
         {
